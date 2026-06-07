@@ -1,2 +1,2 @@
 // Global state management (e.g., Zustand, Redux)
-export {};
+export { useAuthStore } from './authStore';

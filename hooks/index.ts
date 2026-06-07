@@ -1,2 +1,2 @@
 // Custom React hooks will go here
-export {};
+export { useLogout } from './useLogout';
