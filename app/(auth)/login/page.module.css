@@ -1,0 +1,23 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 644px;
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+.Title {
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 120%;
+  font-weight: 800;
+  text-align: center;
+  color: var(--color-neutral-darker);
+}
+
+@media (min-width: 768px) {
+  .Container {
+    padding-inline: 32px;
+  }
+}
