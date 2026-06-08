@@ -1,0 +1,30 @@
+.Nav {
+  display: flex;
+  width: 100%;
+}
+
+.Tab {
+  flex: 1;
+  padding-bottom: 12px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: 500;
+  color: var(--color-neutral-darker);
+  border-bottom: 1px solid transparent;
+  transition: opacity 0.2s ease;
+}
+
+.Tab:hover {
+  opacity: 0.7;
+}
+
+.TabActive {
+  border-bottom-color: var(--color-neutral);
+}
+
+@media (min-width: 768px) {
+  .Tab {
+    font-size: 20px;
+  }
+}

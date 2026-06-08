@@ -1,0 +1,54 @@
+.Page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-coral-lightest);
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding-inline: 20px;
+}
+
+.Logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-neutral-darker);
+}
+
+.LogoIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.LogoText {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 120%;
+  color: var(--color-neutral-darker);
+}
+
+.Main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 40px;
+}
+
+.Footer {
+  padding: 24px 20px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-neutral-dark);
+}
+
+@media (min-width: 768px) {
+  .Header {
+    padding-inline: 32px;
+  }
+}
