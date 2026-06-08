@@ -1,0 +1,68 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn svg {
+  stroke: currentColor;
+  fill: none;
+}
+
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.primary {
+  background-color: var(--color-coral-dark);
+  color: var(--color-white);
+}
+
+.primary:hover,
+.primary:focus {
+  background-color: var(--color-coral-lighter);
+  border-color: var(--color-coral-dark);
+  color: var(--color-green-dark);
+}
+
+.primary:active {
+  background-color: var(--color-coral-dark);
+  border-color: transparent;
+  color: var(--color-white);
+  transform: scale(0.97);
+}
+
+.secondary {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-green-dark);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.secondary:hover,
+.secondary:focus {
+  background-color: var(--color-coral-dark);
+  border-color: transparent;
+  color: var(--color-white);
+}
+
+.secondary:active {
+  background-color: var(--color-green-dark);
+  transform: scale(0.97);
+}
+
+@media (min-width: 1440px) {
+  .btn {
+    font-size: 20px;
+  }
+}
