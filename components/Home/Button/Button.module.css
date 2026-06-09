@@ -1,0 +1,27 @@
+.button {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+
+  background: #cc6534;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 150%;
+  border: transparent;
+  outline: transparent;
+  cursor: pointer;
+
+  transition: background 0.3s ease;
+
+  &:active,
+  &:focus-visible {
+    background: #254c24;
+  }
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background: #254c24;
+  }
+}
