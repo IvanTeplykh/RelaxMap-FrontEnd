@@ -1,18 +1,22 @@
 import { AppLink } from '@/components/ui';
 import styles from './EmptyLocations.module.css';
 
-export function EmptyLocations() {
+interface EmptyLocationsProps {
+  text: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+
+export function EmptyLocations({
+  text,
+  buttonLabel,
+  buttonHref,
+}: EmptyLocationsProps) {
   return (
     <div className={styles.Empty}>
-      <p className={styles.Text}>
-        Ви ще нічого не публікували, поділіться своєю першою локацією!
-      </p>
-      <AppLink
-        variant="primary"
-        href="/locations/create"
-        className={styles.Button}
-      >
-        Поділитись локацією
+      <p className={styles.Text}>{text}</p>
+      <AppLink variant="primary" href={buttonHref} className={styles.Button}>
+        {buttonLabel}
       </AppLink>
     </div>
   );
