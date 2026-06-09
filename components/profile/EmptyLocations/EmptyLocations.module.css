@@ -1,0 +1,23 @@
+.Empty {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 533px;
+  padding: 32px 40px;
+  border-radius: 24px;
+  background-color: var(--color-coral-lighter);
+}
+
+.Text {
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--color-green-dark);
+}
+
+.Button {
+  align-self: flex-start;
+  min-height: 48px;
+  padding: 6px 12px;
+}
