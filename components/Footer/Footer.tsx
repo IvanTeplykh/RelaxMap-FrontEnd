@@ -49,7 +49,7 @@ export const Footer = () => {
                 </div>
                 <div className={css.copy}>
                     <p className={css.copyText}>
-                        &copy; 2025 Природні Мандри. Усі права
+                        &copy; {new Date().getFullYear()} Природні Мандри. Усі права
                         захищені.
                     </p>
                 </div>
