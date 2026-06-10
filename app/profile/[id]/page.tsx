@@ -1,7 +1,7 @@
 'use client';
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { useAuthStore } from '@/store';
+import { useParams } from 'next/navigation';
 import { getUserLocations, getUserProfile } from '@/lib/usersApi';
 import type { LocationsResponse } from '@/types/profile';
 import { ProfileHeader } from '@/components/profile/ProfileHeader/ProfileHeader';
@@ -12,20 +12,19 @@ import styles from './page.module.css';
 
 const PER_PAGE = 6;
 
-export default function ProfilePage() {
-  const user = useAuthStore((state) => state.user);
-  const userId = user?.id;
+export default function PublicProfilePage() {
+  const params = useParams<{ id: string }>();
+  const userId = params.id;
 
   const profileQuery = useQuery({
-    queryKey: ['profile', userId],
-    queryFn: () => getUserProfile(userId as string),
+    queryKey: ['public-profile', userId],
+    queryFn: () => getUserProfile(userId),
     enabled: Boolean(userId),
   });
 
   const locationsQuery = useInfiniteQuery({
-    queryKey: ['profile-locations', userId],
-    queryFn: ({ pageParam }) =>
-      getUserLocations(userId as string, pageParam, PER_PAGE),
+    queryKey: ['public-profile-locations', userId],
+    queryFn: ({ pageParam }) => getUserLocations(userId, pageParam, PER_PAGE),
     enabled: Boolean(userId),
     initialPageParam: 1,
     getNextPageParam: (lastPage: LocationsResponse) =>
@@ -57,18 +56,20 @@ export default function ProfilePage() {
         articlesAmount={profile.articlesAmount}
       />
 
+      <h2 className={styles.SectionTitle}>Локації</h2>
+
       {totalLocations === 0 ? (
         <EmptyLocations
-          text="Ви ще нічого не публікували, поділіться своєю першою локацією!"
-          buttonLabel="Поділитись локацією"
-          buttonHref="/locations/create"
+          text="Цей користувач ще не ділився локаціями"
+          buttonLabel="Назад до локацій"
+          buttonHref="/locations"
         />
       ) : (
         <>
           <ul className={styles.Grid}>
             {locations.map((location) => (
               <li key={location._id}>
-                <LocationCard location={location} editable />
+                <LocationCard location={location} />
               </li>
             ))}
           </ul>

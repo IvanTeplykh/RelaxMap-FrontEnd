@@ -1,0 +1,21 @@
+.logoImg {
+    display: block;
+    width: 156px;
+    height: 44px;
+}
+
+.logoIcon {
+    color: black;
+}
+
+.logoText {
+    color: #4c2613;
+}
+
+[data-theme="dark"] .logoIcon {
+    color: var(--color-green-dark);
+}
+
+[data-theme="dark"] .logoText {
+    color: var(--color-coral-darkest);
+}

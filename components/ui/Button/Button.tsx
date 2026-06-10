@@ -31,9 +31,9 @@ export const AppLink = ({
   disabled = false,
 }: LinkProps) => {
   const rootClassName = `
-    ${css.btn} 
-    ${css[variant]} 
-    ${disabled ? css.disabled : ""} 
+    ${css.btn}
+    ${css[variant]}
+    ${disabled ? css.disabled : ""}
     ${className || ""}
   `.trim();
 

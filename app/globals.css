@@ -18,6 +18,7 @@
   --color-red: #b00101;
   --color-green-dark: #1b391b;
   --color-green: #254c24;
+  --color-overlay-light: rgba(0, 0, 0, 0.15);
 }
 
 body {
