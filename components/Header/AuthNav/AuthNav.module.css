@@ -1,0 +1,21 @@
+.authNav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .authNav {
+    display: none;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .authLinksWrapper {
+    display: none;
+  }
+  .authLink {
+    padding: 3px 10px;
+    border: transparent 1px solid;
+    outline: transparent;
+    line-height: 1.5;
+  }
+}

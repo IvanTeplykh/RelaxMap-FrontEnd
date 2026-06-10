@@ -1,0 +1,24 @@
+.Page {
+  min-height: 100vh;
+  background-color: var(--color-coral-lightest);
+}
+
+.Container {
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 32px;
+}
+
+@media (min-width: 768px) {
+  .Container {
+    padding-inline: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Container {
+    padding-inline: 64px;
+  }
+}

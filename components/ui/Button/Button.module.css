@@ -33,7 +33,7 @@
 .primary:focus {
   background-color: var(--color-coral-lighter);
   border-color: var(--color-coral-dark);
-  color: var(--color-green-dark);
+  color: var(--color-coral-darkest);
 }
 
 .primary:active {
@@ -45,7 +45,7 @@
 
 .secondary {
   background-color: rgba(0, 0, 0, 0.05);
-  color: var(--color-green-dark);
+  color: var(--color-coral-darkest);
   border-color: rgba(0, 0, 0, 0.15);
 }
 

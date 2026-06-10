@@ -1,0 +1,30 @@
+.headerWrapper {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 320px;
+  background-color: var(--color-coral-lightest);
+}
+
+.navWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .headerWrapper {
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .headerWrapper {
+    padding: 0 64px;
+  }
+  .menuButton {
+    display: none;
+  }
+}

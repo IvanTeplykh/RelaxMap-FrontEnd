@@ -1,13 +1,20 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const PRIVATE_ROUTES = ['/profile', '/locations/create', '/locations/edit'];
+const PRIVATE_PREFIX_ROUTES = ['/locations/create', '/locations/edit'];
 const AUTH_ROUTES = ['/login', '/register'];
 
 function matchesRoute(pathname: string, routes: string[]): boolean {
   return routes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`)
   );
+}
+
+// /profile (власний профіль) — приватний лише як точний шлях;
+// /profile/[id] (публічний профіль) — доступний усім.
+function isPrivate(pathname: string): boolean {
+  if (pathname === '/profile') return true;
+  return matchesRoute(pathname, PRIVATE_PREFIX_ROUTES);
 }
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
@@ -48,7 +55,7 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
     return response;
   };
 
-  if (matchesRoute(pathname, PRIVATE_ROUTES) && !isAuthenticated) {
+  if (isPrivate(pathname) && !isAuthenticated) {
     return withRotatedCookies(
       NextResponse.redirect(new URL('/login', request.url))
     );
