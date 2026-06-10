@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="/layout (snapshot).tsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="/layout (snapshot).tsx" />
+              <option name="originalContent" value="import type { ReactNode } from 'react';&#10;import { Montserrat } from 'next/font/google';&#10;import { classNames } from '@/lib/utils';&#10;import styles from './layout.module.css';&#10;&#10;const montserrat = Montserrat({&#10;  subsets: ['latin', 'cyrillic'],&#10;  display: 'swap',&#10;});&#10;&#10;export default function AuthLayout({ children }: { children: ReactNode }) {&#10;  return (&#10;    &lt;div className={classNames(montserrat.className, styles.Page)}&gt;&#10;      &lt;main className={styles.Main}&gt;{children}&lt;/main&gt;&#10;      &lt;footer className={styles.Footer}&gt;© 2026 Relax Map&lt;/footer&gt;&#10;    &lt;/div&gt;&#10;  );&#10;}&#10;" />
+              <option name="updatedContent" value="import type { ReactNode } from 'react';&#13;&#10;import { Montserrat } from 'next/font/google';&#13;&#10;import { classNames } from '@/lib/utils';&#13;&#10;import styles from './layout.module.css';&#13;&#10;&#13;&#10;const montserrat = Montserrat({&#13;&#10;  subsets: ['latin', 'cyrillic'],&#13;&#10;  display: 'swap',&#13;&#10;});&#13;&#10;&#13;&#10;export default function AuthLayout({ children }: { children: ReactNode }) {&#13;&#10;  return (&#13;&#10;    &lt;div className={classNames(montserrat.className, styles.Page)}&gt;&#13;&#10;      &lt;main className={styles.Main}&gt;{children}&lt;/main&gt;&#13;&#10;    &lt;/div&gt;&#13;&#10;  );&#13;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -12,7 +12,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <div className={classNames(montserrat.className, styles.Page)}>
       <main className={styles.Main}>{children}</main>
-      <footer className={styles.Footer}>© 2026 Relax Map</footer>
     </div>
   );
 }

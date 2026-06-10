@@ -25,6 +25,7 @@ export default function RootLayout({
         {children}
         <Toaster position="top-center" />
         <ModalProvider />
+      <Footer />
       </body>
     </html>
   );
