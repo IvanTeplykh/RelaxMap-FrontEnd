@@ -23,6 +23,7 @@ export default function RootLayout({
         </header>
         {children}
         <Toaster position="top-center" />
+      <Footer />
       </body>
     </html>
   );
