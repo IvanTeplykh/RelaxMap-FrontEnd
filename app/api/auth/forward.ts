@@ -9,7 +9,7 @@ export async function forwardAuthRequest(
   path: AuthPath
 ): Promise<Response> {
   const apiUrl = process.env.API_URL;
-  console.log(apiUrl);
+  console.log(process.env.API_URL);
   if (!apiUrl) {
     return Response.json(
       { message: 'API_URL environment variable is not set' },
