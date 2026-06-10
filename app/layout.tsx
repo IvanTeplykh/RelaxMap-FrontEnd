@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import "modern-normalize";
 import "./globals.css";
 import {Footer} from "@/components/Footer/Footer";
+import { Header } from "@/components/Header/Header";
 
 export const metadata: Metadata = {
   title: "RelaxMap",
