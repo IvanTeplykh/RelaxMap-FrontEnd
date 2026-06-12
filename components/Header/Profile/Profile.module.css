@@ -1,5 +1,9 @@
 .profileWrapper {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* margin-left: 10px; */
+  margin-top: auto;
 }
 .profileImage {
   display: block;
@@ -36,9 +40,7 @@
 
 @media (min-width: 1440px) {
   .profileWrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    margin-top: 0;
     margin-left: 10px;
   }
 }

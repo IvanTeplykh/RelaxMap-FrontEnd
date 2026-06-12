@@ -9,6 +9,9 @@ import NavList from "./NavList/NavList";
 import AuthNav from "./AuthNav/AuthNav";
 import Logo from "./Logo/Logo";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import Menu from "./Menu/Menu";
+import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
+import { useCloseOnMediaQuery } from "@/hooks/useCloseOnMediaQuery";
 
 export default function Header() {
   const pathname = usePathname();
@@ -20,19 +23,31 @@ export default function Header() {
     setIsMenuOpen((prev) => !prev);
   };
 
+  useLockBodyScroll(isMenuOpen);
+  useCloseOnMediaQuery("(min-width: 1440px)", () => setIsMenuOpen(false));
+
   return (
     <div className={css.headerWrapper}>
       <Logo />
       <div className={css.navWrapper}>
         {pathname !== "/login" && pathname !== "/register" && (
           <>
-            <NavList isAuth={isAuth} />
-            <AuthNav isAuth={isAuth} />
-            {isAuth && <Profile user={user} />}
+            <div className={css.navListWrapper}>
+              <NavList isAuth={isAuth} />
+            </div>
+            <div className={css.authNavWrapper}>
+              <AuthNav isAuth={isAuth} />
+            </div>
+            {isAuth && (
+              <div className={css.profileWrapper}>
+                <Profile user={user} />
+              </div>
+            )}
             <BurgerMenu
               isMenuOpen={isMenuOpen}
               handleMenuClick={handleMenuClick}
             />
+            {isMenuOpen && <Menu user={user} isAuth={isAuth} />}
           </>
         )}
       </div>
