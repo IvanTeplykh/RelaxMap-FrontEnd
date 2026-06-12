@@ -1,33 +1,65 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import css from "./ConfirmationModal.module.css";
-import { useModal } from "@/hooks/use-modal-store";
 import { AppButton } from "../../Button/Button";
-import { useLogout } from "@/hooks";
+import { useRouter } from "next/navigation";
+import Modal from "../Modal";
 
-const ConfirmationModal = () => {
-  const onClose = useModal().onClose;
-  const handleLogout = useLogout();
+interface ConfirmationModalProps {
+  title: string;
+  confirmButtonText: string;
+  cancelButtonText: string;
+  onConfirm: () => Promise<void> | void;
+  onCancel?: () => void;
+}
 
-  const handleLogoutModal = () => {
-    handleLogout();
-    onClose();
+const ConfirmationModal = ({
+  title,
+  confirmButtonText,
+  cancelButtonText,
+  onConfirm,
+  onCancel,
+}: ConfirmationModalProps) => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClose = () => {
+    if (onCancel) onCancel();
+    router.back();
+  };
+
+  const handleConfirm = async () => {
+    try {
+      setIsLoading(true);
+
+      await onConfirm();
+
+      router.back();
+    } catch (error) {
+      console.error("Action failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
-    <>
+    <Modal isOpen={true} onClose={handleClose}>
       <div className={css.headerWrapper}>
-        <h3 className={css.title}>Ви точно хочете вийти?</h3>
+        <h3 className={css.title}>{title}</h3>
         <p className={css.description}>Ми будемо сумувати за вами!</p>
       </div>
       <div className={css.buttonsWrapper}>
-        <AppButton variant="secondary" onClick={onClose} className={css.btn}>
-          Відмінити
+        <AppButton
+          variant="secondary"
+          onClick={handleClose}
+          className={css.btn}
+        >
+          {cancelButtonText}
         </AppButton>
-        <AppButton onClick={handleLogoutModal} className={css.btn}>
-          Вийти
+        <AppButton onClick={handleConfirm} className={css.btn}>
+          {isLoading ? "Завантаження..." : confirmButtonText}
         </AppButton>
       </div>
-    </>
+    </Modal>
   );
 };
 

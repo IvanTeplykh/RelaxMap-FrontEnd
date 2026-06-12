@@ -1,17 +1,17 @@
 import Image from "next/image";
 import css from "./Profile.module.css";
 import { User } from "@/types";
-import { useModal } from "@/hooks/use-modal-store";
+import { useRouter } from "next/navigation";
 
 interface ProfileProps {
   user: User | null;
 }
 
 export default function Profile({ user }: ProfileProps) {
-  const { onOpen } = useModal();
+  const router = useRouter();
 
   const handleModalLogout = () => {
-    onOpen("ConfirmationModal");
+    router.push("/confirmation");
   };
 
   return (
