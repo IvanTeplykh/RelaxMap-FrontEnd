@@ -15,7 +15,7 @@ export default function BurgerMenu({
       onClick={handleMenuClick}
       className={css.menuButton}
       aria-expanded={isMenuOpen}
-      aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
+      aria-label={isMenuOpen ? "Закрити меню" : "Відкрити меню"}
     >
       <svg
         className={`${css.menuIconSvg} ${isMenuOpen ? css.hidden : css.visible}`}

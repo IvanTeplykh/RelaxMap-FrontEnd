@@ -3,13 +3,14 @@ import React from "react";
 import css from "./ConfirmationModal.module.css";
 import { useModal } from "@/hooks/use-modal-store";
 import { AppButton } from "../../Button/Button";
+import { useLogout } from "@/hooks";
 
 const ConfirmationModal = () => {
   const onClose = useModal().onClose;
-  const handleLogout = () => {
-    //! user logout
-    console.log("Logout");
+  const handleLogout = useLogout();
 
+  const handleLogoutModal = () => {
+    handleLogout();
     onClose();
   };
   return (
@@ -22,7 +23,7 @@ const ConfirmationModal = () => {
         <AppButton variant="secondary" onClick={onClose} className={css.btn}>
           Відмінити
         </AppButton>
-        <AppButton onClick={handleLogout} className={css.btn}>
+        <AppButton onClick={handleLogoutModal} className={css.btn}>
           Вийти
         </AppButton>
       </div>

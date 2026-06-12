@@ -4,6 +4,7 @@ import React, { useEffect, useCallback } from "react";
 import css from "./Modal.module.css";
 import { createPortal } from "react-dom";
 import { useModal } from "@/hooks/use-modal-store";
+import { useLockBodyScroll } from "@/hooks";
 
 /*
 Для виклику модалки у вашому компоненті вам потрібно з хука useModal
@@ -54,6 +55,8 @@ const Modal = ({
   const onClose =
     explicitOnClose !== undefined ? explicitOnClose : storeModal.onClose;
 
+  useLockBodyScroll(!!isOpen);
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -66,12 +69,10 @@ const Modal = ({
   useEffect(() => {
     if (isOpen) {
       window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
     }
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
     };
   }, [isOpen, handleKeyDown]);
 

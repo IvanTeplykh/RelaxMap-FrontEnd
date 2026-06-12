@@ -2,12 +2,22 @@
 
 import { useEffect } from "react";
 
+let lockCount = 0;
+
 export function useLockBodyScroll(isLocked: boolean): void {
   useEffect(() => {
-    document.body.style.overflow = isLocked ? "hidden" : "";
+    if (!isLocked) return;
+
+    lockCount += 1;
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = "";
+      lockCount -= 1;
+
+      if (lockCount <= 0) {
+        document.body.style.overflow = "";
+        lockCount = 0;
+      }
     };
   }, [isLocked]);
 }
