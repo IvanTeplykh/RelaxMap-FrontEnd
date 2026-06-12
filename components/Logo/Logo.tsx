@@ -1,10 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import css from "./Logo.module.css";
 
 export default function Logo() {
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     return (
         <div>
-            <Link href="/">
+            <Link href="/" onClick={handleScrollToTop}>
                 <svg
                     width="129"
                     height="40"

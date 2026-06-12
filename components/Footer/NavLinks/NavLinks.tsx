@@ -1,12 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import css from "./NavLinks.module.css";
 
 export default function NavLinks() {
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <nav className={css.navColumn} aria-label="Footer navigation">
       <ul className={css.linkList}>
         <li>
-          <Link href="/" className={css.navLink}>
+          <Link href="/" className={css.navLink} onClick={handleScrollToTop}>
             Головна
           </Link>
         </li>
