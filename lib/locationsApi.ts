@@ -1,9 +1,17 @@
 import axios from "axios";
 import type { Location } from "@/types/profile";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+const API_URL = process.env.API_URL || "http://localhost:5000";
 
 const api = axios.create({ baseURL: API_URL });
+
+export interface CreateLocationPayload {
+  name: string;
+  locationType: string;
+  region: string;
+  description: string;
+  image: File;
+}
 
 interface GetLocationsParams {
   page: number;
@@ -20,13 +28,18 @@ interface LocationsResponse {
   totalPages: number;
   locations: Location[];
 }
-interface LocationType {
+export type LocationCategoryOption = {
+  label: string;
+  value: string;
+};
+
+export interface LocationType {
   _id: string;
   type: string;
   slug: string;
   shortDescription?: string;
 }
-interface Region {
+export interface Region {
   _id: string;
   region?: string;
   name?: string;
@@ -60,4 +73,36 @@ export const getLocations = async ({
     },
   });
   return data;
+};
+
+const getErrorMessage = (error: unknown, fallback: string): string => {
+  if (axios.isAxiosError<{ message?: string }>(error)) {
+    return error.response?.data?.message ?? error.message ?? fallback;
+  }
+
+  return error instanceof Error ? error.message : fallback;
+};
+
+export const createLocation = async ({
+  name,
+  locationType,
+  region,
+  description,
+  image,
+}: CreateLocationPayload): Promise<Location> => {
+  const formData = new FormData();
+  formData.append("name", name.trim());
+  formData.append("locationType", locationType);
+  formData.append("region", region);
+  formData.append("description", description.trim());
+  formData.append("image", image);
+
+  try {
+    const { data } = await api.post<Location>("/locations", formData);
+    return data;
+  } catch (error) {
+    throw new Error(
+      getErrorMessage(error, "Не вдалося створити локацію. Спробуйте ще раз."),
+    );
+  }
 };
