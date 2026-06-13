@@ -1,9 +1,7 @@
 import axios from "axios";
 import type { Location } from "@/types/profile";
 
-const API_URL = process.env.API_URL || "http://localhost:5000";
-
-const api = axios.create({ baseURL: API_URL });
+const api = axios.create({ baseURL: "/api", withCredentials: true });
 
 export interface CreateLocationPayload {
   name: string;
