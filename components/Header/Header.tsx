@@ -40,7 +40,7 @@ export default function Header() {
               <NavList isAuth={isAuth} />
             </div>
             <div className={css.authNavWrapper}>
-              <AuthNav isAuth={isAuth} />
+              <AuthNav isAuth={isAuth} onNavigate={closeMenu} />
             </div>
             {isAuth && (
               <div className={css.profileWrapper}>
