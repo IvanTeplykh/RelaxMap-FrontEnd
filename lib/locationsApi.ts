@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { Location } from "@/types/profile";
+import type { LocationDetails } from "@/types/location";
 
 const publicApi = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
 const privateApi = axios.create({
@@ -23,6 +24,7 @@ interface GetLocationsParams {
   locationType?: string;
   sort?: string;
 }
+
 interface LocationsResponse {
   page: number;
   limit: number;
@@ -30,6 +32,7 @@ interface LocationsResponse {
   totalPages: number;
   locations: Location[];
 }
+
 export type LocationCategoryOption = {
   label: string;
   value: string;
@@ -41,6 +44,7 @@ export interface LocationType {
   slug: string;
   shortDescription?: string;
 }
+
 export interface Region {
   _id: string;
   region?: string;
@@ -48,16 +52,19 @@ export interface Region {
   type?: string;
   slug: string;
 }
+
 export const getLocationTypes = async (): Promise<LocationType[]> => {
   const { data } = await publicApi.get<LocationType[]>(
     "/categories/location-types",
   );
   return data;
 };
+
 export const getRegions = async (): Promise<Region[]> => {
   const { data } = await publicApi.get<Region[]>("/categories/regions");
   return data;
 };
+
 export const getLocations = async ({
   page,
   limit,
@@ -83,7 +90,6 @@ const getErrorMessage = (error: unknown, fallback: string): string => {
   if (axios.isAxiosError<{ message?: string }>(error)) {
     return error.response?.data?.message ?? error.message ?? fallback;
   }
-
   return error instanceof Error ? error.message : fallback;
 };
 
@@ -126,6 +132,21 @@ export const getLocationById = async (id: string): Promise<Location> => {
   } catch (error) {
     throw new Error(
       getErrorMessage(error, "Не вдалося завантажити дані локації."),
+    );
+  }
+};
+
+export const getLocationDetailsById = async (
+  locationId: string,
+): Promise<LocationDetails> => {
+  try {
+    const { data } = await publicApi.get<LocationDetails>(
+      `/locations/${locationId}`,
+    );
+    return data;
+  } catch (error) {
+    throw new Error(
+      getErrorMessage(error, "Не вдалося завантажити детальні дані локації."),
     );
   }
 };

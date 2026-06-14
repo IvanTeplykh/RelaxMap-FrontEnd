@@ -1,0 +1,75 @@
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.rateValue {
+  color: var(--color-green-dark);
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+}
+
+.rateValue::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background-image: url('data:image/svg+xml;utf8,<svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.82 3.66C1.5 3.66 1.2 3.58667 0.92 3.44C0.64 3.28 0.413334 3.06 0.24 2.78C0.0800001 2.5 0 2.18 0 1.82C0 1.47333 0.0800001 1.16667 0.24 0.9C0.413334 0.62 0.64 0.4 0.92 0.24C1.2 0.0799998 1.5 0 1.82 0C2.15333 0 2.45333 0.0799998 2.72 0.24C3 0.4 3.22 0.62 3.38 0.9C3.54 1.16667 3.62 1.47333 3.62 1.82C3.62 2.18 3.54 2.5 3.38 2.78C3.22 3.06 3 3.28 2.72 3.44C2.45333 3.58667 2.15333 3.66 1.82 3.66Z" fill="%231B391B"/></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  margin-left: 9px;
+  margin-right: 9px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-green-dark);
+  margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--color-green-dark);
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 48px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .rateValue {
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 56px;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+
+  .value {
+    font-size: 18px;
+  }
+}
