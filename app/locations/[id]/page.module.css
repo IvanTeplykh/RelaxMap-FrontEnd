@@ -1,0 +1,31 @@
+.LocationSection {
+  padding: 32px 0;
+}
+
+.InfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ReviewsSection {
+  padding: 64px 0;
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1440px) {
+  .LocationSection {
+    padding: 48px 0;
+  }
+
+  .InfoWrapper {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .ReviewsSection {
+    padding: 72px 0;
+  }
+}

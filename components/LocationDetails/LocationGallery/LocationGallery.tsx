@@ -15,6 +15,7 @@ export const LocationGallery = ({ image, name }: Props) => {
         fill
         className={css.galleryImage}
         priority
+        sizes="100vw"
       />
     </div>
   );

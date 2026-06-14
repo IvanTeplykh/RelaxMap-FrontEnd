@@ -5,6 +5,21 @@ export interface LocationOwner {
   name: string;
 }
 
+export interface RegionInfo {
+  _id: string;
+  region: string;
+  slug: string;
+  level: "регіональне" | "обласне" | "локальне" | string;
+  note?: string;
+}
+
+export interface LocationTypeInfo {
+  _id: string;
+  type: string;
+  slug: string;
+  shortDescription?: string;
+}
+
 export interface LocationDetails {
   _id: string;
   name: string;
@@ -12,6 +27,10 @@ export interface LocationDetails {
   description: string;
   region: string;
   locationType: string;
+
+  regionInfo?: RegionInfo;
+  locationTypeInfo?: LocationTypeInfo;
+
   rate: number;
   ownerId: LocationOwner;
   feedbacksId: Feedback[];

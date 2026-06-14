@@ -9,9 +9,9 @@ import { getFeedbacks } from "@/lib/feedbacksApi";
 import type { LocationDetails } from "@/types/location";
 
 import { LocationGallery } from "@/components/LocationDetails/LocationGallery/LocationGallery";
-// import { LocationInfoBlock } from "@/components/LocationDetails/LocationInfoBlock/LocationInfoBlock";
-// import { LocationDescription } from "@/components/LocationDetails/LocationDescription/LocationDescription";
-// import { ReviewsBlock } from "@/components/LocationDetails/ReviewsBlock/ReviewsBlock";
+import { LocationInfoBlock } from "@/components/LocationDetails/LocationInfoBlock/LocationInfoBlock";
+import { LocationDescription } from "@/components/LocationDetails/LocationDescription/LocationDescription";
+import { ReviewsBlock } from "@/components/LocationDetails/ReviewsBlock/ReviewsBlock";
 
 import css from "./page.module.css";
 
@@ -51,17 +51,18 @@ export default function LocationDetailsPage() {
   return (
     <div className="container">
       <section className={css.LocationSection}>
-        <div className={css.HeroGrid}>
+        <div className={css.InfoWrapper}>
           <LocationGallery image={location.image} name={location.name} />
-
-          {/* <LocationInfoBlock location={location} /> */}
+          <LocationInfoBlock location={location} />
         </div>
+      </section>
 
-        {/* <LocationDescription description={location.description} /> */}
+      <section className={css.DescriptionSection}>
+        <LocationDescription description={location.description} />
       </section>
 
       <section className={css.ReviewsSection}>
-        {/* <ReviewsBlock locationId={id} feedbacks={feedbacks} /> */}
+        <ReviewsBlock locationId={id} feedbacks={feedbacks} />
       </section>
     </div>
   );

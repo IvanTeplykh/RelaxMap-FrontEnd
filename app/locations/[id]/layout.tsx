@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { Providers } from "@/app/profile/Providers";
-
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -20,7 +18,6 @@ async function getLocation(id: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const { id } = await params;
-
     const location = await getLocation(id);
 
     return {
@@ -45,5 +42,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function LocationLayout({ children }: { children: ReactNode }) {
-  return <Providers>{children}</Providers>;
+  return <>{children}</>;
 }

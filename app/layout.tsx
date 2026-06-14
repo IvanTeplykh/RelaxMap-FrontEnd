@@ -5,6 +5,7 @@ import "./globals.css";
 import { Footer } from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import { ModalProvider } from "@/providers/modal-provider";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 
 export const metadata: Metadata = {
   title: "RelaxMap",
@@ -13,21 +14,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  modal,
+}: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>
-        <main>
+        <QueryProvider>
           <header>
             <Header />
           </header>
-          {children}
-          <Toaster position="top-center" />
-          <ModalProvider />
+          <main>{children}</main>
           <Footer />
-        </main>
+          <ModalProvider />
+          {modal}
+          <Toaster position="top-center" />
+        </QueryProvider>
       </body>
     </html>
   );
