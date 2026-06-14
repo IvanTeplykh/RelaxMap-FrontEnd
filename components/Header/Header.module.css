@@ -1,5 +1,10 @@
 .headerWrapper {
   width: 100%;
+}
+
+.container {
+  max-width: 375px;
+  margin: 0 auto;
   padding: 6px 20px;
   display: flex;
   align-items: center;
@@ -25,7 +30,8 @@
 }
 
 @media (min-width: 768px) {
-  .headerWrapper {
+  .container {
+    max-width: 768px;
     padding: 6px 32px;
   }
   .authNavWrapper {
@@ -34,9 +40,9 @@
 }
 
 @media (min-width: 1440px) {
-  .headerWrapper {
-    padding: 6px 64px;
+  .container {
     max-width: 1440px;
+    padding: 6px 64px;
   }
   .navListWrapper {
     display: block;
