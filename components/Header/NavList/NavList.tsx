@@ -26,7 +26,7 @@ export default function NavList({ isAuth, onNavigate }: NavListProps) {
       </li>
       {isAuth && (
         <li className={css.navItem}>
-          <Link href={`/profile/${id}`} onClick={onNavigate}>
+          <Link href="/profile" onClick={onNavigate}>
             Мій Профіль
           </Link>
         </li>
