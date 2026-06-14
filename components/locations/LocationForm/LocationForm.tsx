@@ -359,6 +359,7 @@ export function LocationForm({
             id="location-type"
             className={classNames(
               styles.input,
+              !formik.values.locationType && styles.placeholderSelect,
               getError("locationType") && styles.selectError,
             )}
             disabled={isCategoriesLoading || categoriesError !== null}
@@ -388,6 +389,7 @@ export function LocationForm({
             id="location-region"
             className={classNames(
               styles.input,
+              !formik.values.region && styles.placeholderSelect,
               getError("region") && styles.selectError,
             )}
             disabled={isCategoriesLoading || categoriesError !== null}

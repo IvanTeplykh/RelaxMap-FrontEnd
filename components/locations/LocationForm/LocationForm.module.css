@@ -149,6 +149,14 @@ select.input {
   cursor: pointer;
 }
 
+select.input.placeholderSelect {
+  color: var(--color-neutral);
+}
+
+select.input option {
+  color: var(--color-coral-darkest);
+}
+
 select.input.selectError,
 select.input.selectError:hover,
 select.input.selectError:focus {
