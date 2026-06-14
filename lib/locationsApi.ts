@@ -1,8 +1,11 @@
 import axios from "axios";
 import type { Location } from "@/types/profile";
 
-const publicApi = axios.create({ baseURL: "/api" });
-const privateApi = axios.create({ baseURL: "/api", withCredentials: true });
+const publicApi = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
+const privateApi = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true,
+});
 
 export interface CreateLocationPayload {
   name: string;

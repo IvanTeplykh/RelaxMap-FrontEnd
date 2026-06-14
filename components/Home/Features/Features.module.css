@@ -1,8 +1,11 @@
 .features {
-  padding: 64px 20px;
   width: 100%;
 }
-
+.container {
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 64px 20px;
+}
 .featuresTitle {
   font-weight: 700;
   font-size: 28px;
@@ -56,7 +59,9 @@
   color: #1b391b;
 }
 @media (min-width: 768px) {
-  .features {
+  .container {
+    max-width: 768px;
+    margin: 0 auto;
     padding: 64px 32px;
   }
   .featuresTitle {
@@ -78,7 +83,9 @@
   }
 }
 @media (min-width: 1440px) {
-  .features {
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
     padding: 112px 64px;
   }
 

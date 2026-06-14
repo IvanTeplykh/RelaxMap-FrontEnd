@@ -1,30 +1,26 @@
 "use client";
 
-import { Location } from "@/types/profile";
-import css from "./Popular.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/navigation";
-
 import { Navigation } from "swiper/modules";
-import LocationCard from "./LocationCard/LocationCard";
-import { AppButton, AppLink } from "@/components/ui/Button/Button";
+import { AppButton } from "@/components/ui/Button/Button";
 import { Icon } from "@/components/ui/Icon/Icon";
 
-interface PopularProps {
-  locations: Location[];
+import css from "./Feedbacks.module.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import { FeedbackWithLocation } from "@/types/feedbacks";
+import FeedbacksCard from "./FeedbacksCard/FeedbacksCard";
+
+interface FeedbackProps {
+  feedbacks: FeedbackWithLocation[];
 }
 
-export default function Popular({ locations }: PopularProps) {
+export default function Feedbacks({ feedbacks }: FeedbackProps) {
   return (
-    <section className={css.popularSection}>
+    <section className={css.feedbacksSection}>
       <div className={css.container}>
-        <div className={css.popularHeader}>
-          <h2 className={css.popularHeaderTitle}>Популярні локації</h2>
-          <AppLink className={css.popularHeaderLink} href="/locations">
-            Всі локації
-          </AppLink>
+        <div className={css.feedbacksHeader}>
+          <h2 className={css.feedbacksHeaderTitle}>Останні відгуки</h2>
         </div>
         <Swiper
           modules={[Navigation]}
@@ -50,15 +46,11 @@ export default function Popular({ locations }: PopularProps) {
           }}
           className={css.swiper}
         >
-          {locations.length === 0 ? (
-            <p className={css.noLocations}>Немає популярних локацій</p>
-          ) : (
-            locations.map((location) => (
-              <SwiperSlide key={location._id} className={css.swiperSlide}>
-                <LocationCard location={location} />
-              </SwiperSlide>
-            ))
-          )}
+          {feedbacks.map((feedback) => (
+            <SwiperSlide key={feedback._id} className={css.swiperSlide}>
+              <FeedbacksCard feedback={feedback} />
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <div className={css.navigation}>

@@ -1,4 +1,4 @@
-.popularSection {
+.feedbacksSection {
   width: 100%;
 }
 .container {
@@ -7,39 +7,35 @@
   margin: 0 auto;
 }
 
-.popularHeader {
+.feedbacksHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
 }
 
-.popularHeaderTitle {
+.feedbacksHeaderTitle {
   font-size: 28px;
   line-height: 120%;
   letter-spacing: -0.01em;
-}
-
-.popularHeaderLink {
-  min-width: 114px;
-  padding: 12px 11px;
-}
-.noLocations {
-  font-size: 18px;
   color: var(--color-coral-darkest);
-  text-align: center;
-  width: 100%;
 }
 
-.swiper {
-  width: 100%;
+.swiper :global(.swiper-wrapper) {
+  align-items: stretch;
   margin-bottom: 40px;
 }
+
 .swiperSlide {
-  width: 100%;
   height: auto;
   display: flex;
 }
+
+.swiperSlide > * {
+  width: 100%;
+  height: 100%;
+}
+
 .navigation {
   display: flex;
   justify-content: flex-end;
@@ -68,6 +64,7 @@
 .btnNext svg {
   fill: currentColor;
 }
+
 @media (min-width: 375px) {
   .container {
     max-width: 375px;
@@ -78,7 +75,7 @@
     max-width: 768px;
     padding: 64px 32px;
   }
-  .popularHeaderTitle {
+  .feedbacksHeaderTitle {
     font-size: 44px;
   }
 }
@@ -87,7 +84,7 @@
     max-width: 1440px;
     padding: 72px 64px;
   }
-  .popularHeaderTitle {
+  .feedbacksHeaderTitle {
     font-size: 52px;
   }
 }

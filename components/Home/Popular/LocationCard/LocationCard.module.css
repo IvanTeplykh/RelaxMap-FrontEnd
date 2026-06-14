@@ -1,0 +1,69 @@
+.cardWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-coral-lighter);
+}
+
+.cardImageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* одинаковая высота изображения */
+  overflow: hidden;
+}
+
+.cardImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0; /* убрать старую логику min-height */
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.locationType {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 150%;
+  color: #4c2613;
+  margin-bottom: 12px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.starsWrapper {
+  margin-bottom: 12px;
+}
+.cardTitle {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 150%;
+  color: #4c2613;
+  margin-bottom: 12px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cardLink {
+  padding: 12px;
+  width: 100%;
+  margin-top: auto;
+}
+@media (min-width: 1440px) {
+  .locationType {
+    font-size: 16px;
+  }
+  .cardTitle {
+    font-size: 26px;
+  }
+}
