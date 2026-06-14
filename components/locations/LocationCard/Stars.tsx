@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { StarRating } from 'react-flexible-star-rating';
+import { StarRating } from "react-flexible-star-rating";
 
 interface StarsProps {
   rate?: number;
@@ -23,6 +23,7 @@ export function Stars({ rate = 0 }: StarsProps) {
       isHalfRatingEnabled
       isReadOnly
       dimension={STARS_DIMENSION}
+      color="#000000"
     />
   );
 }

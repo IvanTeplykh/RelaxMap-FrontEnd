@@ -24,7 +24,6 @@ interface GetLocationsParams {
   locationType?: string;
   sort?: string;
 }
-
 interface LocationsResponse {
   page: number;
   limit: number;
@@ -32,7 +31,6 @@ interface LocationsResponse {
   totalPages: number;
   locations: Location[];
 }
-
 export type LocationCategoryOption = {
   label: string;
   value: string;
@@ -44,7 +42,6 @@ export interface LocationType {
   slug: string;
   shortDescription?: string;
 }
-
 export interface Region {
   _id: string;
   region?: string;
@@ -52,19 +49,16 @@ export interface Region {
   type?: string;
   slug: string;
 }
-
 export const getLocationTypes = async (): Promise<LocationType[]> => {
   const { data } = await publicApi.get<LocationType[]>(
     "/categories/location-types",
   );
   return data;
 };
-
 export const getRegions = async (): Promise<Region[]> => {
   const { data } = await publicApi.get<Region[]>("/categories/regions");
   return data;
 };
-
 export const getLocations = async ({
   page,
   limit,
@@ -125,8 +119,6 @@ export interface UpdateLocationPayload {
   image?: File | null;
 }
 
-// --- ТВОЯ ІНТЕГРОВАНА ФУНКЦІЯ ---
-// Працює через publicApi (axios), приймає locationId і гарантує тип LocationDetails
 export const getLocationById = async (
   locationId: string,
 ): Promise<LocationDetails> => {

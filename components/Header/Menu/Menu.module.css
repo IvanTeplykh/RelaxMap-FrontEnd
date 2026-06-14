@@ -1,0 +1,44 @@
+.menuWrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: calc(100vh - 72px);
+  background: var(--color-coral-lightest);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+  padding-bottom: 92px;
+}
+
+.profileWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authNavWrapper,
+.profileWrapper {
+  margin-top: auto;
+}
+.authLink {
+  padding: 3px 10px;
+  border: transparent 1px solid;
+  outline: transparent;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+@media (min-width: 768px) {
+  .authNavWrapper,
+  .authLink {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .menuWrapper {
+    display: none;
+  }
+}

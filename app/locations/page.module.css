@@ -1,0 +1,22 @@
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+  .page {
+    padding: 32px 20px 64px;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .page {
+    padding: 32px 32px 64px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .page {
+    padding: 48px 64px 72px;
+  }
+}

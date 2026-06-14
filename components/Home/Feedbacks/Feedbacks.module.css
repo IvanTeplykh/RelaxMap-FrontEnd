@@ -1,0 +1,90 @@
+.feedbacksSection {
+  width: 100%;
+}
+.container {
+  width: 100vw;
+  padding: 64px 20px;
+  margin: 0 auto;
+}
+
+.feedbacksHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.feedbacksHeaderTitle {
+  font-size: 28px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--color-coral-darkest);
+}
+
+.swiper :global(.swiper-wrapper) {
+  align-items: stretch;
+  margin-bottom: 40px;
+}
+
+.swiperSlide {
+  height: auto;
+  display: flex;
+}
+
+.swiperSlide > * {
+  width: 100%;
+  height: 100%;
+}
+
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  gap: 10px;
+}
+.btnPrev,
+.btnNext {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  color: var(--color-coral-darkest);
+  background: var(--color-coral-lighter);
+}
+
+.btnPrev:focus,
+.btnNext:focus,
+.btnPrev:focus-visible,
+.btnNext:focus-visible {
+  color: var(--color-coral-darkest);
+  background: var(--color-coral-lighter);
+  border: 1px solid rgba(178, 178, 178, 0.5);
+}
+
+.btnPrev svg,
+.btnNext svg {
+  fill: currentColor;
+}
+
+@media (min-width: 375px) {
+  .container {
+    max-width: 375px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 64px 32px;
+  }
+  .feedbacksHeaderTitle {
+    font-size: 44px;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 72px 64px;
+  }
+  .feedbacksHeaderTitle {
+    font-size: 52px;
+  }
+}

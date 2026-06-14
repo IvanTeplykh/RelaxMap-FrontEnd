@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af0af348-5d89-4c16-bc9c-26fffb9afcab" name="Changes" comment="add footer section">
-      <change afterPath="$PROJECT_DIR$/components/Footer/AuthFooter/AuthFooter.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/AuthFooter/AuthFooter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/Credits/Credits.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/Credits/Credits.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/MainFooter/MainFooter.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/MainFooter/MainFooter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/NavLinks/NavLinks.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/NavLinks/NavLinks.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/SocialLinks/SocialLinks.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer/SocialLinks/SocialLinks.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(auth)/layout.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/layout.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(auth)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Footer/Footer.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Footer/NavLinks/NavLinks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/NavLinks/NavLinks.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Logo/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Logo/Logo.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +17,7 @@
   <component name="CopilotChats">
     <option name="panelChat">
       <chat>
-        <option name="activeSessionId" value="79c71ae6-cb49-4d5a-a321-dbf264b4b2df" />
+        <option name="activeSessionId" value="4b3bea08-8e00-4280-b801-3e7832a05945" />
         <option name="sessions">
           <session>
             <option name="chatType" value="PANEL" />
@@ -82,6 +69,14 @@
             <option name="modelValue" value="auto" />
             <option name="targetType" value="LOCAL" />
           </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="4b3bea08-8e00-4280-b801-3e7832a05945" />
+            <option name="modeId" value="Agent" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
         </option>
         <option name="type" value="PANEL" />
       </chat>
@@ -119,12 +114,12 @@
     &quot;assignee&quot;: &quot;VladByshov&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/IvanTeplykh/RelaxMap-FrontEnd",
-    "accountId": "2fe36aa1-90ed-4284-a353-1adb5e553366"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IvanTeplykh/RelaxMap-FrontEnd&quot;,
+    &quot;accountId&quot;: &quot;2fe36aa1-90ed-4284-a353-1adb5e553366&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -165,7 +160,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "footer-fix",
+    "git-widget-placeholder": "footer-fix2",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",
@@ -180,7 +175,7 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\WebStorm 2025.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Project\\project-relaxmap-front\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>

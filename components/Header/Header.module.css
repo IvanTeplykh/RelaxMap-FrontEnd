@@ -1,11 +1,12 @@
 .headerWrapper {
   width: 100%;
-  padding: 0 20px;
+  padding: 6px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-width: 320px;
-  background-color: var(--color-coral-lightest);
+  margin: 0 auto;
+  position: relative;
 }
 
 .navWrapper {
@@ -13,16 +14,35 @@
   align-items: center;
   justify-content: center;
 }
+.navListWrapper {
+  display: none;
+}
+.profileWrapper {
+  display: none;
+}
+.authNavWrapper {
+  display: none;
+}
 
 @media (min-width: 768px) {
   .headerWrapper {
-    padding: 0 32px;
+    padding: 6px 32px;
+  }
+  .authNavWrapper {
+    display: block;
   }
 }
 
 @media (min-width: 1440px) {
   .headerWrapper {
-    padding: 0 64px;
+    padding: 6px 64px;
+    max-width: 1440px;
+  }
+  .navListWrapper {
+    display: block;
+  }
+  .profileWrapper {
+    display: block;
   }
   .menuButton {
     display: none;

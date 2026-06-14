@@ -61,7 +61,7 @@ export default function ProfilePage() {
         <EmptyLocations
           text="Ви ще нічого не публікували, поділіться своєю першою локацією!"
           buttonLabel="Поділитись локацією"
-          buttonHref="/locations/create"
+          buttonHref="/locations/add"
         />
       ) : (
         <>

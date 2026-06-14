@@ -1,10 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import css from "./Logo.module.css";
 
 export default function Logo() {
+    const pathname = usePathname();
+
+    const handleScrollToTop = (event: MouseEvent<HTMLAnchorElement>) => {
+        if (pathname !== "/") {
+            return;
+        }
+
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     return (
         <div>
-            <Link href="/">
+            <Link href="/" onClick={handleScrollToTop}>
                 <svg
                     width="129"
                     height="40"

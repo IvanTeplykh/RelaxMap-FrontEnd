@@ -14,6 +14,7 @@ interface LinkProps extends BaseProps {
   href: string;
   target?: string;
   rel?: string;
+  onClick?: () => void;
 }
 
 interface ButtonProps extends BaseProps {
@@ -29,6 +30,7 @@ export const AppLink = ({
   target,
   rel,
   disabled = false,
+  onClick,
 }: LinkProps) => {
   const rootClassName = `
     ${css.btn}
@@ -43,7 +45,12 @@ export const AppLink = ({
       className={rootClassName}
       target={target}
       rel={rel}
-      onClick={(e) => disabled && e.preventDefault()}
+      onClick={(e) => {
+        if (disabled) {
+          e.preventDefault();
+        }
+        onClick?.();
+      }}
     >
       {children}
     </Link>

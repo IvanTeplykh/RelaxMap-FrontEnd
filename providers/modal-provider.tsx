@@ -8,6 +8,7 @@ import { useModal } from "@/hooks/use-modal-store";
 
 export function ModalProvider() {
   const { type, isOpen, onClose } = useModal();
+  if (!isOpen) return null;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

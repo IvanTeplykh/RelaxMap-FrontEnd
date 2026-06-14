@@ -1,16 +1,21 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { AppLink } from '@/components/ui';
-import type { Location } from '@/types/profile';
-import { Stars } from './Stars';
-import styles from './LocationCard.module.css';
+import Image from "next/image";
+import Link from "next/link";
+import { AppLink } from "@/components/ui";
+import type { Location } from "@/types/profile";
+import { Stars } from "./Stars";
+import styles from "./LocationCard.module.css";
 
 interface LocationCardProps {
   location: Location;
   editable?: boolean;
+  locationTypeLabel?: string;
 }
 
-export function LocationCard({ location, editable = false }: LocationCardProps) {
+export function LocationCard({
+  location,
+  editable = false,
+  locationTypeLabel,
+}: LocationCardProps) {
   const rate = location.rate ?? location.rating ?? 0;
 
   return (
@@ -26,7 +31,9 @@ export function LocationCard({ location, editable = false }: LocationCardProps) 
       </div>
 
       <div className={styles.Content}>
-        <span className={styles.Tag}>{location.locationType}</span>
+        <span className={styles.Tag}>
+          {locationTypeLabel || location.locationType}
+        </span>
         <Stars rate={rate} />
         <h3 className={styles.Name}>{location.name}</h3>
 
@@ -41,7 +48,7 @@ export function LocationCard({ location, editable = false }: LocationCardProps) 
 
           {editable && (
             <Link
-              href={`/locations/edit/${location._id}`}
+              href={`/locations/${location._id}/edit`}
               className={styles.EditButton}
               aria-label="Редагувати локацію"
             >

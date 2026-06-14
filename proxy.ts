@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const PRIVATE_PREFIX_ROUTES = ['/locations/create', '/locations/edit'];
+const PRIVATE_PREFIX_ROUTES = ['/locations/add'];
 const AUTH_ROUTES = ['/login', '/register'];
+
+// /locations/{id}/edit — редагування локації (id у середині шляху)
+const EDIT_LOCATION_PATTERN = /^\/locations\/[^/]+\/edit\/?$/;
 
 function matchesRoute(pathname: string, routes: string[]): boolean {
   return routes.some(
@@ -14,6 +17,7 @@ function matchesRoute(pathname: string, routes: string[]): boolean {
 // /profile/[id] (публічний профіль) — доступний усім.
 function isPrivate(pathname: string): boolean {
   if (pathname === '/profile') return true;
+  if (EDIT_LOCATION_PATTERN.test(pathname)) return true;
   return matchesRoute(pathname, PRIVATE_PREFIX_ROUTES);
 }
 
@@ -71,8 +75,8 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
 export const config = {
   matcher: [
     '/profile/:path*',
-    '/locations/create/:path*',
-    '/locations/edit/:path*',
+    '/locations/add/:path*',
+    '/locations/:locationId/edit',
     '/login',
     '/register',
   ],

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 12px;
+  height: 100%;
   background-color: var(--color-coral-lighter);
   border: 1px solid rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -17,11 +18,25 @@
   object-fit: cover;
 }
 
+/* .Content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+} */
+
 .Content {
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding: 16px;
+  flex-grow: 1;
+}
+
+.Actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
 }
 
 .Tag {
@@ -37,11 +52,11 @@
   color: var(--color-green-dark);
 }
 
-.Actions {
+/* .Actions {
   display: flex;
   gap: 8px;
   margin-top: 8px;
-}
+} */
 
 .ViewLink {
   flex: 1;

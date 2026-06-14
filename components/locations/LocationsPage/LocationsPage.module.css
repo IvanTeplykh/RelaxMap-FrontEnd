@@ -1,0 +1,63 @@
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+  .title {
+    max-width: 100%;
+    margin: 0 auto 40px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--color-neutral-darkest);
+  }
+
+  .locationCard {
+    width: 100%;
+  }
+
+  .statusMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 200px;
+    margin: 0;
+
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .title {
+    max-width: 100%;
+    margin: 0 auto 40px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--color-neutral-darkest);
+  }
+
+  .locationCard {
+    width: 340px;
+  }
+
+  .statusMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 200px;
+    margin: 0;
+
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .locationCard {
+    width: 421px;
+  }
+}

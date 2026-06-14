@@ -1,0 +1,356 @@
+@media only screen and (min-width: 320px) {
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .input {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 8px;
+    width: 100%;
+    height: 40px;
+    color: var(--opacity-neutral-darkest-60);
+    outline: none;
+    background: var(--color-coral-lighter);
+    &:hover {
+      border: 1px solid var(--color-coral-light);
+    }
+    &:focus {
+      border: 1px solid var(--color-coral-light);
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  .dropdown {
+    position: relative;
+  }
+  .regionDropdown {
+    width: calc((100% - 16px) / 2);
+  }
+  .sortDropdown {
+    width: 100%;
+  }
+  .dropdownSummary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    color: var(--color-neutral-dark);
+    background: var(--color-coral-lighter);
+    cursor: pointer;
+    list-style: none;
+  }
+  .dropdownSummary::-webkit-details-marker {
+    display: none;
+  }
+
+  .dropdownSummary,
+  .locationTypesButton {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    outline: none;
+    transition: border-color 200ms ease;
+  }
+
+  .dropdownSummary:hover,
+  .locationTypesButton:hover {
+    border-color: var(--color-coral-light);
+  }
+
+  .dropdown[open] .dropdownSummary,
+  .dropdown[open] .dropdownContent,
+  .locationTypesButtonOpen,
+  .locationTypesDropdown {
+    border-color: var(--color-coral-light);
+  }
+
+  .dropdownArrow {
+    width: 12px;
+    height: 7px;
+    flex-shrink: 0;
+    fill: #000;
+    transform: rotate(180deg);
+    transition: transform 200ms ease;
+  }
+  .dropdown[open] .dropdownArrow {
+    transform: rotate(0deg);
+  }
+  .dropdownContent {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    z-index: 20;
+
+    width: 100%;
+    max-height: 320px;
+    overflow-y: auto;
+
+    border: 1px solid var(--color-coral-light);
+    border-radius: 6px;
+
+    background: var(--color-coral-lighter);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral) transparent;
+  }
+  .dropdownList {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    list-style: none;
+    gap: 5px;
+  }
+  .dropdownItem {
+    margin: 0;
+  }
+  .dropdownOption {
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    cursor: pointer;
+  }
+
+  .dropdownInput {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .dropdownInput:checked + .dropdownText {
+    font-weight: 600;
+  }
+  .dropdownText {
+    display: block;
+  }
+
+  .locationTypes {
+    position: relative;
+    width: calc((100% - 16px) / 2);
+  }
+
+  .locationTypesButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: left;
+    color: var(--color-neutral-dark);
+
+    background: var(--color-coral-lighter);
+    cursor: pointer;
+  }
+
+  .locationTypesArrow {
+    width: 12px;
+    height: 7px;
+    flex-shrink: 0;
+    fill: #000;
+    transform: rotate(180deg);
+    transition: transform 200ms ease;
+  }
+
+  .locationTypesArrowOpen {
+    transform: rotate(0deg);
+  }
+
+  .locationTypesDropdown {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: 100%;
+    max-height: 320px;
+    padding: 8px;
+    overflow-y: auto;
+
+    border: 1px solid var(--color-coral-light);
+    border-radius: 6px;
+
+    background: var(--color-coral-lighter);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral) transparent;
+  }
+
+  .locationTypeOption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--color-neutral-dark);
+
+    cursor: pointer;
+  }
+
+  .locationTypeOption:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .locationTypeCheckbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .customCheckbox {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: transparent;
+  }
+
+  .customCheckbox::before {
+    content: "";
+
+    width: 19px;
+    height: 18px;
+
+    border: 2px solid var(--color-neutral-darkest);
+    background-color: transparent;
+  }
+
+  .checkboxIcon {
+    display: none;
+
+    width: 24px;
+    height: 24px;
+
+    fill: var(--color-neutral-darkest);
+  }
+
+  .locationTypeCheckbox:checked + .customCheckbox::before {
+    display: none;
+  }
+
+  .locationTypeCheckbox:checked + .customCheckbox .checkboxIcon {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .locationTypes {
+    width: calc((431px - 16px) / 2);
+  }
+  .selectWrapper {
+    position: relative;
+    width: calc((431px - 16px) / 2);
+  }
+
+  .selectSortWrapper {
+    position: relative;
+    width: 158px;
+    margin-left: auto;
+  }
+
+  .regionDropdown {
+    width: calc((431px - 16px) / 2);
+  }
+  .sortDropdown {
+    width: 158px;
+    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .filters {
+    gap: 24px;
+  }
+  .input {
+    width: 310px;
+    height: 43px;
+    font-size: 18px;
+  }
+
+  .locationTypes {
+    width: 199px;
+  }
+
+  .locationTypesButton {
+    height: 43px;
+    font-size: 18px;
+  }
+
+  .locationTypeCheckbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .selectWrapper {
+    width: 199px;
+  }
+  .regionDropdown {
+    width: 199px;
+  }
+  .sortDropdown {
+    width: 160px;
+  }
+  .dropdownSummary {
+    height: 43px;
+    font-size: 18px;
+  }
+  .dropdownOption {
+    display: block;
+    width: 100%;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .dropdownOption:hover {
+    background: var(--color-coral-light);
+  }
+
+  .locationTypeOption:hover {
+    background: var(--color-coral-light);
+  }
+}
