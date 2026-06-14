@@ -107,3 +107,49 @@ export const createLocation = async ({
     );
   }
 };
+
+export interface UpdateLocationPayload {
+  name: string;
+  locationType: string;
+  region: string;
+  description: string;
+  image?: File | null;
+}
+
+export const getLocationById = async (id: string): Promise<Location> => {
+  try {
+    const { data } = await publicApi.get<Location>(`/locations/${id}`);
+    return data;
+  } catch (error) {
+    throw new Error(
+      getErrorMessage(error, "Не вдалося завантажити дані локації."),
+    );
+  }
+};
+
+export const updateLocation = async (
+  id: string,
+  { name, locationType, region, description, image }: UpdateLocationPayload,
+): Promise<Location> => {
+  const formData = new FormData();
+  formData.append("name", name.trim());
+  formData.append("locationType", locationType);
+  formData.append("region", region);
+  formData.append("description", description.trim());
+
+  if (image) {
+    formData.append("image", image);
+  }
+
+  try {
+    const { data } = await privateApi.patch<Location>(
+      `/locations/${id}`,
+      formData,
+    );
+    return data;
+  } catch (error) {
+    throw new Error(
+      getErrorMessage(error, "Не вдалося оновити локацію. Спробуйте ще раз."),
+    );
+  }
+};

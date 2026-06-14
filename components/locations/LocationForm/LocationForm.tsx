@@ -45,6 +45,7 @@ type BaseLocationFormProps = {
     image?: File | null;
   };
   initialImageUrl?: string | null;
+  onCancel?: () => void;
 };
 
 type CreateLocationFormProps = BaseLocationFormProps & {
@@ -64,6 +65,7 @@ export function LocationForm({
   initialValues: providedInitialValues,
   initialImageUrl = null,
   onSubmit,
+  onCancel,
 }: LocationFormProps = {}) {
   const router = useRouter();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -301,6 +303,9 @@ export function LocationForm({
     if (selectedImagePreviewUrl) URL.revokeObjectURL(selectedImagePreviewUrl);
     if (fileInputRef.current) fileInputRef.current.value = "";
     setSelectedImagePreviewUrl(null);
+    if (onCancel) {
+      onCancel();
+    }
   };
 
   return (

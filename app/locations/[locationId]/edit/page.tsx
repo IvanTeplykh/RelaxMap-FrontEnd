@@ -1,0 +1,78 @@
+"use client";
+
+import { useEffect, useState, use } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+import { getLocationById, updateLocation } from "@/lib/locationsApi";
+import type { Location } from "@/types/profile";
+import {
+  LocationForm,
+  LocationFormValues,
+} from "@/components/locations/LocationForm/LocationForm";
+
+interface EditLocationPageProps {
+  params: Promise<{
+    locationId: string;
+  }>;
+}
+
+export default function EditLocationPage({ params }: EditLocationPageProps) {
+  const router = useRouter();
+  const { locationId } = use(params);
+
+  const [locationData, setLocationData] = useState<Location | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLocationData = async () => {
+      try {
+        const data = await getLocationById(locationId);
+        setLocationData(data);
+      } catch (error) {
+        toast.error("Не вдалося завантажити дані локації");
+        router.push("/locations");
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    void fetchLocationData();
+  }, [locationId, router]);
+
+  const handleSubmit = async (values: LocationFormValues) => {
+    await updateLocation(locationId, {
+      name: values.name,
+      locationType: values.locationType,
+      region: values.region,
+      description: values.description,
+      image: values.image,
+    });
+
+    router.push(`/locations/${locationId}`);
+  };
+
+  if (isLoading) {
+    return <div>Завантаження...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Редагування місця</h1>
+      {locationData && (
+        <LocationForm
+          mode="edit"
+          initialValues={{
+            name: locationData.name,
+            locationType: locationData.locationType,
+            region: locationData.region,
+          }}
+          initialImageUrl={locationData.image}
+          onSubmit={handleSubmit}
+          onCancel={() => router.back()}
+        />
+      )}
+    </div>
+  );
+}

@@ -1,4 +1,4 @@
-type LocationMethod = "GET" | "POST";
+type LocationMethod = "GET" | "POST" | "PATCH";
 
 function getApiUrl(): string | Response {
   const apiUrl = process.env.API_URL;
@@ -40,6 +40,7 @@ async function mirrorResponse(response: Response): Promise<Response> {
 export async function forwardLocationsRequest(
   request: Request,
   method: LocationMethod,
+  slug: string = "",
 ): Promise<Response> {
   const apiUrl = getApiUrl();
 
@@ -47,9 +48,11 @@ export async function forwardLocationsRequest(
     return apiUrl;
   }
 
+  const { search } = new URL(request.url);
+  const targetUrl = `${apiUrl}/locations${slug}${search}`;
+
   if (method === "GET") {
-    const { search } = new URL(request.url);
-    const response = await fetch(`${apiUrl}/locations${search}`, {
+    const response = await fetch(targetUrl, {
       method,
       cache: "no-store",
     });
@@ -70,7 +73,7 @@ export async function forwardLocationsRequest(
   }
 
   const body = await request.arrayBuffer();
-  const response = await fetch(`${apiUrl}/locations`, {
+  const response = await fetch(targetUrl, {
     method,
     headers,
     body: body.byteLength > 0 ? body : undefined,
