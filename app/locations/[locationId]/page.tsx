@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 
-import { getLocationById } from "@/lib/locationsApi";
+import { getLocationDetailsById } from "@/lib/locationsApi";
 import { getFeedbacksByLocationId } from "@/lib/feedbacksApi";
 
 import type { LocationDetails } from "@/types/location";
@@ -22,7 +22,7 @@ export default function LocationDetailsPage() {
 
   const locationQuery = useQuery<LocationDetails>({
     queryKey: ["location", locationId],
-    queryFn: () => getLocationById(locationId),
+    queryFn: () => getLocationDetailsById(locationId),
     enabled: !!locationId,
   });
 
