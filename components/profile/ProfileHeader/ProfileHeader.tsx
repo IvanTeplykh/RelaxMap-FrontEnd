@@ -13,7 +13,7 @@ export function ProfileHeader({
   articlesAmount,
 }: ProfileHeaderProps) {
   return (
-    <header className={styles.Header}>
+    <div className={styles.Header}>
       {avatarUrl ? (
         // `unoptimized` skips the optimizer's SSRF check so the default avatar
         // served from a private host (localhost backend) still loads locally.
@@ -34,6 +34,6 @@ export function ProfileHeader({
         <p className={styles.Name}>{name}</p>
         <p className={styles.Articles}>Статей: {articlesAmount}</p>
       </div>
-    </header>
+    </div>
   );
 }
