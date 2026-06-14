@@ -1,7 +1,8 @@
 import axios from "axios";
 import type { Location } from "@/types/profile";
 
-const api = axios.create({ baseURL: "/api", withCredentials: true });
+const publicApi = axios.create({ baseURL: "/api" });
+const privateApi = axios.create({ baseURL: "/api", withCredentials: true });
 
 export interface CreateLocationPayload {
   name: string;
@@ -45,11 +46,13 @@ export interface Region {
   slug: string;
 }
 export const getLocationTypes = async (): Promise<LocationType[]> => {
-  const { data } = await api.get<LocationType[]>("/categories/location-types");
+  const { data } = await publicApi.get<LocationType[]>(
+    "/categories/location-types",
+  );
   return data;
 };
 export const getRegions = async (): Promise<Region[]> => {
-  const { data } = await api.get<Region[]>("/categories/regions");
+  const { data } = await publicApi.get<Region[]>("/categories/regions");
   return data;
 };
 export const getLocations = async ({
@@ -60,7 +63,7 @@ export const getLocations = async ({
   locationType,
   sort,
 }: GetLocationsParams): Promise<LocationsResponse> => {
-  const { data } = await api.get<LocationsResponse>("/locations", {
+  const { data } = await publicApi.get<LocationsResponse>("/locations", {
     params: {
       page,
       limit,
@@ -96,7 +99,7 @@ export const createLocation = async ({
   formData.append("image", image);
 
   try {
-    const { data } = await api.post<Location>("/locations", formData);
+    const { data } = await privateApi.post<Location>("/locations", formData);
     return data;
   } catch (error) {
     throw new Error(
