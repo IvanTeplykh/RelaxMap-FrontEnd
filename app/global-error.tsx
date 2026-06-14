@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import "modern-normalize";
+import "modern-normalize/modern-normalize.css";
 import "./globals.css";
 import css from "./error.module.css";
 

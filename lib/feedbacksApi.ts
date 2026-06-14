@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Feedback, FeedbacksResponse } from "@/types/feedback";
+import { Feedback, FeedbacksResponse } from "@/types/feedbacks";
 import { getAllLocations } from "@/utils/getAllLocations";
 
 const publicApi = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });

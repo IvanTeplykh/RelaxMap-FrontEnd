@@ -1,4 +1,4 @@
-import { Feedback } from "./feedback";
+import { Feedback } from "./feedbacks";
 
 export interface LocationOwner {
   _id: string;

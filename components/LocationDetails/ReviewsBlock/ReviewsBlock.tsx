@@ -1,4 +1,4 @@
-import type { Feedback } from "@/types/feedback";
+import type { Feedback } from "@/types/feedbacks";
 import css from "./ReviewsBlock.module.css";
 
 interface Props {

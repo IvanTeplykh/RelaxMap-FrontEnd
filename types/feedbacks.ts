@@ -3,8 +3,8 @@ export interface Feedback {
   rate: number;
   description: string;
   userName: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface FeedbackWithLocation extends Feedback {
