@@ -11,3 +11,15 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media screen and (min-width: 768px) {
+  .galleryWrapper {
+    height: 468px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .galleryWrapper {
+    height: 502px;
+  }
+}

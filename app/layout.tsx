@@ -19,13 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header>
-          <Header />
-        </header>
-        {children}
-        <Toaster position="top-center" />
-        <ModalProvider />
-        <Footer />
+        <main>
+          <header>
+            <Header />
+          </header>
+          {children}
+          <Toaster position="top-center" />
+          <ModalProvider />
+          <Footer />
+        </main>
       </body>
     </html>
   );

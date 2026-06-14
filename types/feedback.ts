@@ -7,13 +7,7 @@ export interface Feedback {
   updatedAt?: string;
 }
 
-export interface CreateFeedbackData {
-  locationId: string;
-  rate: number;
-  description: string;
-}
-
-export interface FeedbacksPaginationResponse {
+export interface FeedbacksResponse {
   page: number;
   perPage: number;
   totalItems: number;

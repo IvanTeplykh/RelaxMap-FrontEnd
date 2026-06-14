@@ -1,23 +1,20 @@
-import type { Feedback } from "./feedback";
+import { Feedback } from "./feedback";
+
+export interface LocationOwner {
+  _id: string;
+  name: string;
+}
 
 export interface LocationDetails {
   _id: string;
   name: string;
-  locationType: string;
-  region: string;
-  rate: number;
-  description: string;
   image: string;
-  ownerId: string;
+  description: string;
+  region: string;
+  locationType: string;
+  rate: number;
+  ownerId: LocationOwner;
   feedbacksId: Feedback[];
   createdAt?: string;
   updatedAt?: string;
-}
-
-export interface LocationsListResponse {
-  page: number;
-  limit: number;
-  totalLocations: number;
-  totalPages: number;
-  locations: LocationDetails[];
 }
