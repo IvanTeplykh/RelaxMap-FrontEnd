@@ -1,22 +1,34 @@
+"use client";
+
 import css from "./NavList.module.css";
 import Link from "next/link";
+import { useAuthStore } from "@/store/authStore";
 
 interface NavListProps {
   isAuth: boolean;
+  onNavigate?: () => void;
 }
 
-export default function NavList({ isAuth }: NavListProps) {
+export default function NavList({ isAuth, onNavigate }: NavListProps) {
+  const id = useAuthStore((state) => state.user?.id);
+
   return (
     <ul className={css.navList}>
       <li className={css.navItem}>
-        <Link href="/">Головна</Link>
+        <Link href="/" onClick={onNavigate}>
+          Головна
+        </Link>
       </li>
       <li className={css.navItem}>
-        <Link href="/locations">Місця відпочинку</Link>
+        <Link href="/locations" onClick={onNavigate}>
+          Місця відпочинку
+        </Link>
       </li>
       {isAuth && (
         <li className={css.navItem}>
-          <Link href="/profile">Мій Профіль</Link>
+          <Link href={`/profile/${id}`} onClick={onNavigate}>
+            Мій Профіль
+          </Link>
         </li>
       )}
     </ul>

@@ -23,12 +23,16 @@ export default function Header() {
     setIsMenuOpen((prev) => !prev);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   useLockBodyScroll(isMenuOpen);
-  useCloseOnMediaQuery("(min-width: 1440px)", () => setIsMenuOpen(false));
+  useCloseOnMediaQuery("(min-width: 1440px)", closeMenu);
 
   return (
     <div className={css.headerWrapper}>
-      <Logo />
+      <Logo onClick={closeMenu} />
       <div className={css.navWrapper}>
         {pathname !== "/login" && pathname !== "/register" && (
           <>
@@ -47,7 +51,9 @@ export default function Header() {
               isMenuOpen={isMenuOpen}
               handleMenuClick={handleMenuClick}
             />
-            {isMenuOpen && <Menu user={user} isAuth={isAuth} />}
+            {isMenuOpen && (
+              <Menu user={user} isAuth={isAuth} onNavigate={closeMenu} />
+            )}
           </>
         )}
       </div>

@@ -8,18 +8,20 @@ import { AppLink } from "../../ui";
 interface MenuProps {
   user: User | null;
   isAuth: boolean;
+  onNavigate?: () => void;
 }
 
-export default function Menu({ user, isAuth }: MenuProps) {
+export default function Menu({ user, isAuth, onNavigate }: MenuProps) {
   return (
     <div className={css.menuWrapper}>
-      <NavList isAuth={isAuth} />
+      <NavList isAuth={isAuth} onNavigate={onNavigate} />
       {isAuth ? (
         <div className={css.profileWrapper}>
           <AppLink
             href="/locations/add"
             variant="primary"
             className={css.authLink}
+            onClick={onNavigate}
           >
             Поділитись локацією
           </AppLink>
@@ -27,7 +29,7 @@ export default function Menu({ user, isAuth }: MenuProps) {
         </div>
       ) : (
         <div className={css.authNavWrapper}>
-          <AuthNav isAuth={isAuth} />
+          <AuthNav isAuth={isAuth} onNavigate={onNavigate} />
         </div>
       )}
     </div>
