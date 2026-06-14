@@ -4,12 +4,12 @@ import css from "./page.module.css";
 
 export default function LocationsRoutePage() {
   return (
-    <main className={css.page}>
+    <div className={css.page}>
       <div className={css.container}>
         <Suspense fallback={<p>Завантаження...</p>}>
           <LocationsPage />
         </Suspense>
       </div>
-    </main>
+    </div>
   );
 }

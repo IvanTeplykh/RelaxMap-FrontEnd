@@ -68,10 +68,6 @@ export function LocationForm({
   onCancel,
 }: LocationFormProps = {}) {
   const router = useRouter();
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  const [isAuthHydrated, setIsAuthHydrated] = useState(
-    () => useAuthStore.persist?.hasHydrated?.() ?? true,
-  );
   const [locationTypes, setLocationTypes] = useState<LocationCategoryOption[]>(
     [],
   );
@@ -231,22 +227,6 @@ export function LocationForm({
   }, [categoriesError, isCategoriesLoading, validateForm]);
 
   useEffect(() => {
-    const persistApi = useAuthStore.persist;
-
-    if (!persistApi) return;
-
-    return persistApi.onFinishHydration(() => {
-      setIsAuthHydrated(true);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (isAuthHydrated && !isLoggedIn) {
-      router.push("/login");
-    }
-  }, [isAuthHydrated, isLoggedIn, router]);
-
-  useEffect(() => {
     return () => {
       if (selectedImagePreviewUrl) URL.revokeObjectURL(selectedImagePreviewUrl);
     };
@@ -311,9 +291,9 @@ export function LocationForm({
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit} noValidate>
       <div className={styles.fieldGroup}>
-        <label className={styles.label} htmlFor="location-image">
+        <p className={styles.label} id="location-image-label">
           Обкладинка
-        </label>
+        </p>
         <div className={styles.imagePreview}>
           <Image
             src={
@@ -342,7 +322,11 @@ export function LocationForm({
           ref={fileInputRef}
           onChange={handleImageChange}
         />
-        <label className={styles.uploadButton} htmlFor="location-image">
+        <label
+          className={styles.uploadButton}
+          htmlFor="location-image"
+          id="location-image-upload-label"
+        >
           Завантажити фото
         </label>
         {getError("image") && (
@@ -384,6 +368,7 @@ export function LocationForm({
             id="location-type"
             className={classNames(
               styles.input,
+              !formik.values.locationType && styles.placeholderSelect,
               getError("locationType") && styles.selectError,
             )}
             disabled={isCategoriesLoading || categoriesError !== null}
@@ -413,6 +398,7 @@ export function LocationForm({
             id="location-region"
             className={classNames(
               styles.input,
+              !formik.values.region && styles.placeholderSelect,
               getError("region") && styles.selectError,
             )}
             disabled={isCategoriesLoading || categoriesError !== null}
