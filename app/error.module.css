@@ -1,0 +1,218 @@
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  padding: 60px 20px;
+  background-color: var(--color-coral-lightest);
+}
+
+.contentCard {
+  max-width: 500px;
+  width: 100%;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  padding: 48px 32px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  border: 1px solid var(--color-coral-lighter);
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.illustrationWrapper {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 24px;
+}
+
+.illustration {
+  width: 100%;
+  height: 100%;
+}
+
+.needleGroup {
+  animation: spinNeedle 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: 100px 100px;
+}
+
+.warningBadge {
+  animation: pulseBadge 2s infinite ease-in-out;
+  transform-origin: 150px 150px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-red);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-neutral-darker);
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-neutral-dark);
+  margin-bottom: 24px;
+}
+
+.digestWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-coral-lightest);
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-bottom: 32px;
+  border: 1px dashed var(--color-coral-lighter);
+}
+
+.digestLabel {
+  font-size: 13px;
+  color: var(--color-neutral-dark);
+}
+
+.digestCode {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--color-coral-darker);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.button {
+  width: 100%;
+  padding: 12px 24px;
+  height: 48px;
+}
+
+/* Global Error Standalone Styles */
+.globalErrorBody {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--color-coral-lightest);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.globalBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+  padding: 12px 24px;
+  height: 48px;
+  font-family: inherit;
+}
+
+.globalBtnPrimary {
+  background-color: var(--color-coral-dark);
+  color: var(--color-white);
+}
+
+.globalBtnPrimary:hover {
+  background-color: var(--color-coral-lighter);
+  border-color: var(--color-coral-dark);
+  color: var(--color-coral-darkest);
+}
+
+.globalBtnSecondary {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-coral-darkest);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.globalBtnSecondary:hover {
+  background-color: var(--color-coral-dark);
+  border-color: transparent;
+  color: var(--color-white);
+}
+
+@media (min-width: 480px) {
+  .actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .button {
+    width: auto;
+    flex: 1;
+  }
+  
+  .globalBtn {
+    width: auto;
+    flex: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spinNeedle {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(190deg);
+  }
+  25% {
+    transform: rotate(175deg);
+  }
+  45% {
+    transform: rotate(350deg);
+  }
+  50% {
+    transform: rotate(370deg);
+  }
+  70% {
+    transform: rotate(90deg);
+  }
+  80% {
+    transform: rotate(120deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseBadge {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(176, 1, 1, 0));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(176, 1, 1, 0.4));
+  }
+}
