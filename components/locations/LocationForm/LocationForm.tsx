@@ -66,10 +66,6 @@ export function LocationForm({
   onSubmit,
 }: LocationFormProps = {}) {
   const router = useRouter();
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  const [isAuthHydrated, setIsAuthHydrated] = useState(
-    () => useAuthStore.persist?.hasHydrated?.() ?? true,
-  );
   const [locationTypes, setLocationTypes] = useState<LocationCategoryOption[]>(
     [],
   );
@@ -227,22 +223,6 @@ export function LocationForm({
       void validateForm();
     }
   }, [categoriesError, isCategoriesLoading, validateForm]);
-
-  useEffect(() => {
-    const persistApi = useAuthStore.persist;
-
-    if (!persistApi) return;
-
-    return persistApi.onFinishHydration(() => {
-      setIsAuthHydrated(true);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (isAuthHydrated && !isLoggedIn) {
-      router.push("/login");
-    }
-  }, [isAuthHydrated, isLoggedIn, router]);
 
   useEffect(() => {
     return () => {
