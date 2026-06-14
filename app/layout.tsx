@@ -23,10 +23,10 @@ export default function RootLayout({
           <header>
             <Header />
           </header>
-          <main>
-            {children}
-          </main>
-          <Footer />
+          <main>{children}</main>
+          <footer>
+            <Footer />
+          </footer>
           <ModalProvider />
           {modal}
           <Toaster position="top-center" />
@@ -35,3 +35,4 @@ export default function RootLayout({
     </html>
   );
 }
+
