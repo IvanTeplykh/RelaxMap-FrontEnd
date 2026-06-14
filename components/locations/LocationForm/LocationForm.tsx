@@ -286,9 +286,9 @@ export function LocationForm({
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit} noValidate>
       <div className={styles.fieldGroup}>
-        <label className={styles.label} htmlFor="location-image">
+        <p className={styles.label} id="location-image-label">
           Обкладинка
-        </label>
+        </p>
         <div className={styles.imagePreview}>
           <Image
             src={
@@ -317,7 +317,11 @@ export function LocationForm({
           ref={fileInputRef}
           onChange={handleImageChange}
         />
-        <label className={styles.uploadButton} htmlFor="location-image">
+        <label
+          className={styles.uploadButton}
+          htmlFor="location-image"
+          id="location-image-upload-label"
+        >
           Завантажити фото
         </label>
         {getError("image") && (
