@@ -24,7 +24,9 @@ export default function RootLayout({
             <Header />
           </header>
           <main>{children}</main>
-          <Footer />
+          <footer>
+            <Footer />
+          </footer>
           <ModalProvider />
           {modal}
           <Toaster position="top-center" />

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 
 import { getLocationById } from "@/lib/locationsApi";
-import { getFeedbacks } from "@/lib/feedbacksApi";
+import { getFeedbacksByLocationId } from "@/lib/feedbacksApi";
 
 import type { LocationDetails } from "@/types/location";
 
@@ -18,23 +18,23 @@ import css from "./page.module.css";
 const PER_PAGE = 10;
 
 export default function LocationDetailsPage() {
-  const { id } = useParams<{ id: string }>();
+  const { locationId } = useParams<{ locationId: string }>();
 
   const locationQuery = useQuery<LocationDetails>({
-    queryKey: ["location", id],
-    queryFn: () => getLocationById(id),
-    enabled: !!id,
+    queryKey: ["location", locationId],
+    queryFn: () => getLocationById(locationId),
+    enabled: !!locationId,
   });
 
   const feedbacksQuery = useQuery({
-    queryKey: ["feedbacks", id],
+    queryKey: ["feedbacks", locationId],
     queryFn: () =>
-      getFeedbacks({
-        locationId: id,
+      getFeedbacksByLocationId({
+        locationId: locationId,
         page: 1,
         perPage: PER_PAGE,
       }),
-    enabled: !!id,
+    enabled: !!locationId,
   });
 
   if (locationQuery.isLoading || feedbacksQuery.isLoading) {
@@ -62,7 +62,7 @@ export default function LocationDetailsPage() {
       </section>
 
       <section className={css.ReviewsSection}>
-        <ReviewsBlock locationId={id} feedbacks={feedbacks} />
+        <ReviewsBlock locationId={locationId} feedbacks={feedbacks} />
       </section>
     </div>
   );

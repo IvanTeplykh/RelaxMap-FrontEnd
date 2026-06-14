@@ -1,21 +1,8 @@
-const apiUrl = process.env.API_URL;
+type LocationMethod = "GET" | "POST" | "PATCH";
 
-function buildHeaders(request: Request): Headers {
-  const headers = new Headers();
+function getApiUrl(): string | Response {
+  const apiUrl = process.env.API_URL;
 
-  const cookie = request.headers.get("cookie");
-  if (cookie) headers.set("cookie", cookie);
-
-  const contentType = request.headers.get("content-type");
-  if (contentType) headers.set("content-type", contentType);
-
-  return headers;
-}
-
-export async function forwardLocationsRequest(
-  request: Request,
-  backendPath: string,
-): Promise<Response> {
   if (!apiUrl) {
     return Response.json(
       { message: "API_URL environment variable is not set" },
@@ -23,37 +10,75 @@ export async function forwardLocationsRequest(
     );
   }
 
-  const { search } = new URL(request.url);
+  return apiUrl.replace(/\/+$/, "");
+}
 
-  const headers = buildHeaders(request);
-  const body = await request.text();
+function createResponseHeaders(source: Response): Headers {
+  const headers = new Headers();
+  const contentType = source.headers.get("content-type");
 
-  const backendResponse = await fetch(
-    `${apiUrl}/locations${backendPath}${search}`,
-    {
-      method: request.method,
-      headers,
-      body: body.length > 0 ? body : undefined,
-      cache: "no-store",
-    },
-  );
-
-  const contentType = backendResponse.headers.get("content-type") ?? "";
-
-  if (!backendResponse.ok || !contentType.includes("application/json")) {
-    const resHeaders = new Headers();
-    if (contentType) resHeaders.set("content-type", contentType);
-
-    const text =
-      backendResponse.status === 204 ? null : await backendResponse.text();
-
-    return new Response(text, {
-      status: backendResponse.status,
-      headers: resHeaders,
-    });
+  if (contentType) {
+    headers.set("content-type", contentType);
   }
 
-  const json = await backendResponse.json();
+  for (const setCookie of source.headers.getSetCookie()) {
+    headers.append("set-cookie", setCookie);
+  }
 
-  return Response.json(json, { status: backendResponse.status });
+  return headers;
+}
+
+async function mirrorResponse(response: Response): Promise<Response> {
+  const body = response.status === 204 ? null : await response.text();
+
+  return new Response(body, {
+    status: response.status,
+    headers: createResponseHeaders(response),
+  });
+}
+
+export async function forwardLocationsRequest(
+  request: Request,
+  method: LocationMethod,
+  slug: string = "",
+): Promise<Response> {
+  const apiUrl = getApiUrl();
+
+  if (apiUrl instanceof Response) {
+    return apiUrl;
+  }
+
+  const { search } = new URL(request.url);
+  const targetUrl = `${apiUrl}/locations${slug}${search}`;
+
+  if (method === "GET") {
+    const response = await fetch(targetUrl, {
+      method,
+      cache: "no-store",
+    });
+
+    return mirrorResponse(response);
+  }
+
+  const headers = new Headers();
+  const cookie = request.headers.get("cookie");
+  const contentType = request.headers.get("content-type");
+
+  if (cookie) {
+    headers.set("cookie", cookie);
+  }
+
+  if (contentType) {
+    headers.set("content-type", contentType);
+  }
+
+  const body = await request.arrayBuffer();
+  const response = await fetch(targetUrl, {
+    method,
+    headers,
+    body: body.byteLength > 0 ? body : undefined,
+    cache: "no-store",
+  });
+
+  return mirrorResponse(response);
 }

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locationId: string }>;
 };
 
-async function getLocation(id: string) {
-  const res = await fetch(`${process.env.API_URL}/locations/${id}`, {
+async function getLocation(locationId: string) {
+  const res = await fetch(`${process.env.API_URL}/locations/${locationId}`, {
     cache: "no-store",
   });
 
@@ -17,8 +17,8 @@ async function getLocation(id: string) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const { id } = await params;
-    const location = await getLocation(id);
+    const { locationId } = await params;
+    const location = await getLocation(locationId);
 
     return {
       title: `${location.name} | RelaxMap`,

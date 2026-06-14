@@ -7,6 +7,10 @@ export interface Feedback {
   updatedAt?: string;
 }
 
+export interface FeedbackWithLocation extends Feedback {
+  locationName: string | null;
+}
+
 export interface FeedbacksResponse {
   page: number;
   perPage: number;

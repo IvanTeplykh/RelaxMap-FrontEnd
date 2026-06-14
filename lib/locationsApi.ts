@@ -1,17 +1,170 @@
+import axios from "axios";
+import type { Location } from "@/types/profile";
 import type { LocationDetails } from "@/types/location";
 
-async function getJson<T>(url: string): Promise<T> {
-  const res = await fetch(`/api/locations${url}`, {
-    cache: "no-store",
-  });
+const publicApi = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
+const privateApi = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true,
+});
 
-  if (!res.ok) {
-    throw new Error(`Request failed: ${res.status}`);
+export interface CreateLocationPayload {
+  name: string;
+  locationType: string;
+  region: string;
+  description: string;
+  image: File;
+}
+
+interface GetLocationsParams {
+  page: number;
+  limit: number;
+  search?: string;
+  region?: string;
+  locationType?: string;
+  sort?: string;
+}
+
+interface LocationsResponse {
+  page: number;
+  limit: number;
+  totalLocations: number;
+  totalPages: number;
+  locations: Location[];
+}
+
+export type LocationCategoryOption = {
+  label: string;
+  value: string;
+};
+
+export interface LocationType {
+  _id: string;
+  type: string;
+  slug: string;
+  shortDescription?: string;
+}
+
+export interface Region {
+  _id: string;
+  region?: string;
+  name?: string;
+  type?: string;
+  slug: string;
+}
+
+export const getLocationTypes = async (): Promise<LocationType[]> => {
+  const { data } = await publicApi.get<LocationType[]>(
+    "/categories/location-types",
+  );
+  return data;
+};
+
+export const getRegions = async (): Promise<Region[]> => {
+  const { data } = await publicApi.get<Region[]>("/categories/regions");
+  return data;
+};
+
+export const getLocations = async ({
+  page,
+  limit,
+  search,
+  region,
+  locationType,
+  sort,
+}: GetLocationsParams): Promise<LocationsResponse> => {
+  const { data } = await publicApi.get<LocationsResponse>("/locations", {
+    params: {
+      page,
+      limit,
+      search: search || undefined,
+      region: region || undefined,
+      locationType: locationType || undefined,
+      sort: sort || undefined,
+    },
+  });
+  return data;
+};
+
+const getErrorMessage = (error: unknown, fallback: string): string => {
+  if (axios.isAxiosError<{ message?: string }>(error)) {
+    return error.response?.data?.message ?? error.message ?? fallback;
+  }
+  return error instanceof Error ? error.message : fallback;
+};
+
+export const createLocation = async ({
+  name,
+  locationType,
+  region,
+  description,
+  image,
+}: CreateLocationPayload): Promise<Location> => {
+  const formData = new FormData();
+  formData.append("name", name.trim());
+  formData.append("locationType", locationType);
+  formData.append("region", region);
+  formData.append("description", description.trim());
+  formData.append("image", image);
+
+  try {
+    const { data } = await privateApi.post<Location>("/locations", formData);
+    return data;
+  } catch (error) {
+    throw new Error(
+      getErrorMessage(error, "Не вдалося створити локацію. Спробуйте ще раз."),
+    );
+  }
+};
+
+export interface UpdateLocationPayload {
+  name: string;
+  locationType: string;
+  region: string;
+  description: string;
+  image?: File | null;
+}
+
+// --- ТВОЯ ІНТЕГРОВАНА ФУНКЦІЯ ---
+// Працює через publicApi (axios), приймає locationId і гарантує тип LocationDetails
+export const getLocationById = async (
+  locationId: string,
+): Promise<LocationDetails> => {
+  try {
+    const { data } = await publicApi.get<LocationDetails>(
+      `/locations/${locationId}`,
+    );
+    return data;
+  } catch (error) {
+    throw new Error(
+      getErrorMessage(error, "Не вдалося завантажити детальні дані локації."),
+    );
+  }
+};
+
+export const updateLocation = async (
+  id: string,
+  { name, locationType, region, description, image }: UpdateLocationPayload,
+): Promise<Location> => {
+  const formData = new FormData();
+  formData.append("name", name.trim());
+  formData.append("locationType", locationType);
+  formData.append("region", region);
+  formData.append("description", description.trim());
+
+  if (image) {
+    formData.append("image", image);
   }
 
-  return res.json();
-}
-
-export function getLocationById(id: string): Promise<LocationDetails> {
-  return getJson<LocationDetails>(`/${id}`);
-}
+  try {
+    const { data } = await privateApi.patch<Location>(
+      `/locations/${id}`,
+      formData,
+    );
+    return data;
+  } catch (error) {
+    throw new Error(
+      getErrorMessage(error, "Не вдалося оновити локацію. Спробуйте ще раз."),
+    );
+  }
+};
