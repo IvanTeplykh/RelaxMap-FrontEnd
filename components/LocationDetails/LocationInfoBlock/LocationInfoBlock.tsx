@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { LocationDetails } from "@/types/location";
-import { Stars } from "@/components/ui/Stars";
+import { Stars } from "@/components/locations/LocationCard/Stars";
 import css from "./LocationInfoBlock.module.css";
 
 interface Props {
