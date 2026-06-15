@@ -24,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={montserrat.className}>
         <QueryProvider>
           <header>
             <Header />
