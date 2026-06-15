@@ -2,7 +2,9 @@ import axios from "axios";
 import type { Location } from "@/types/profile";
 import type { LocationDetails } from "@/types/location";
 
-const publicApi = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
+const publicApi = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+});
 const privateApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,

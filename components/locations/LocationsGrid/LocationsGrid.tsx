@@ -22,7 +22,7 @@ export const LocationsGrid = ({
   return (
     <>
       <ul className={css.list} ref={listRef}>
-        {locations.map((location) => (
+        {locations.map((location, index) => (
           <li key={location._id} className={css.locationCard}>
             <LocationCard
               location={location}
@@ -30,6 +30,7 @@ export const LocationsGrid = ({
                 locationTypeLabels[location.locationType] ||
                 location.locationType
               }
+              priority={index < 3}
             />
           </li>
         ))}

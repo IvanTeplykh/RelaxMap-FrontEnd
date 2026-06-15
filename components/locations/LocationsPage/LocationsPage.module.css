@@ -1,4 +1,4 @@
-@media only screen and (min-width: 320px) and (max-width: 375px) {
+@media only screen and (min-width: 320px) {
   .title {
     max-width: 100%;
     margin: 0 auto 40px;
@@ -25,20 +25,13 @@
 
     text-align: center;
   }
+
+  .contentArea {
+    min-height: 600px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-  .title {
-    max-width: 100%;
-    margin: 0 auto 40px;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 110%;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: var(--color-neutral-darkest);
-  }
-
   .locationCard {
     width: 340px;
   }
