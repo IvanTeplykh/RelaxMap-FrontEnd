@@ -79,3 +79,6 @@ button {
 ul {
   list-style: none;
 }
+main {
+  flex: 1;
+}
