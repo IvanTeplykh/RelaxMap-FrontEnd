@@ -8,7 +8,7 @@ import { login } from '@/lib/authApi';
 import { useAuthStore } from '@/store';
 import type { LoginData } from '@/types';
 import { Input } from '@/components/auth/Input/Input';
-import { Button } from '@/components/auth/Button/Button';
+import { AppButton } from '@/components/ui';
 import styles from './LoginForm.module.css';
 
 const loginSchema = Yup.object({
@@ -38,7 +38,7 @@ export function LoginForm() {
       try {
         const user = await login(values);
         setUser(user);
-        router.push('/');
+        router.push('/profile');
       } catch (error) {
         toast.error(
           error instanceof Error
@@ -65,9 +65,13 @@ export function LoginForm() {
         error={formik.errors.password}
         {...formik.getFieldProps('password')}
       />
-      <Button type="submit" disabled={formik.isSubmitting}>
+      <AppButton
+        type="submit"
+        disabled={formik.isSubmitting}
+        className={styles.SubmitButton}
+      >
         Увійти
-      </Button>
+      </AppButton>
     </form>
   );
 }
