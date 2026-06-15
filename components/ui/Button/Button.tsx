@@ -8,6 +8,7 @@ interface BaseProps {
   className?: string;
   variant?: "primary" | "secondary";
   disabled?: boolean;
+  ariaLabel?: string;
 }
 
 interface LinkProps extends BaseProps {
@@ -31,6 +32,7 @@ export const AppLink = ({
   rel,
   disabled = false,
   onClick,
+  ariaLabel,
 }: LinkProps) => {
   const rootClassName = `
     ${css.btn}
@@ -51,6 +53,7 @@ export const AppLink = ({
         }
         onClick?.();
       }}
+      aria-label={ariaLabel}
     >
       {children}
     </Link>
@@ -64,6 +67,7 @@ export const AppButton = ({
   variant = "primary",
   type = "button",
   disabled = false,
+  ariaLabel,
 }: ButtonProps) => {
   const rootClassName = `${css.btn} ${css[variant]} ${className || ""}`.trim();
 
@@ -73,6 +77,7 @@ export const AppButton = ({
       onClick={onClick}
       className={rootClassName}
       disabled={disabled}
+      aria-label={ariaLabel}
     >
       {children}
     </button>

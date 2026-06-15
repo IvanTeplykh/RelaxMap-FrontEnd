@@ -6,23 +6,15 @@
   justify-content: center;
   gap: 32px;
 
-  font-size: 18px;
+  font-size: 16px;
   line-height: 150%;
   color: var(--color-green-dark);
 }
-/* .navList {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  margin-right: 32px;
-  font-size: 18px;
-  line-height: 150%;
-  color: var(--color-green-dark);
-} */
+
 @media (min-width: 1440px) {
   .navList {
     flex-direction: row;
     margin-right: 32px;
+    font-size: 18px;
   }
 }

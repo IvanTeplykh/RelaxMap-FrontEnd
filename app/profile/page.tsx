@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { useAuthStore } from '@/store';
-import { getUserLocations, getUserProfile } from '@/lib/usersApi';
-import type { LocationsResponse } from '@/types/profile';
-import { ProfileHeader } from '@/components/profile/ProfileHeader/ProfileHeader';
-import { EmptyLocations } from '@/components/profile/EmptyLocations/EmptyLocations';
-import { LocationCard } from '@/components/locations';
-import { AppButton } from '@/components/ui';
-import styles from './page.module.css';
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useAuthStore } from "@/store";
+import { getUserLocations, getUserProfile } from "@/lib/usersApi";
+import type { LocationsResponse } from "@/types/profile";
+import { ProfileHeader } from "@/components/profile/ProfileHeader/ProfileHeader";
+import { EmptyLocations } from "@/components/profile/EmptyLocations/EmptyLocations";
+import { LocationCard } from "@/components/locations";
+import { AppButton } from "@/components/ui";
+import styles from "./page.module.css";
 
 const PER_PAGE = 6;
 
@@ -17,13 +17,13 @@ export default function ProfilePage() {
   const userId = user?.id;
 
   const profileQuery = useQuery({
-    queryKey: ['profile', userId],
+    queryKey: ["profile", userId],
     queryFn: () => getUserProfile(userId as string),
     enabled: Boolean(userId),
   });
 
   const locationsQuery = useInfiniteQuery({
-    queryKey: ['profile-locations', userId],
+    queryKey: ["profile-locations", userId],
     queryFn: ({ pageParam }) =>
       getUserLocations(userId as string, pageParam, PER_PAGE),
     enabled: Boolean(userId),
@@ -48,6 +48,8 @@ export default function ProfilePage() {
   const pages = locationsQuery.data?.pages ?? [];
   const totalLocations = pages[0]?.totalLocations ?? 0;
   const locations = pages.flatMap((page) => page.locations);
+
+  console.log("Profile:", profile.avatarUrl);
 
   return (
     <div className={styles.Wrapper}>
@@ -82,8 +84,8 @@ export default function ProfilePage() {
                 className={styles.MoreButton}
               >
                 {locationsQuery.isFetchingNextPage
-                  ? 'Завантаження…'
-                  : 'Показати ще'}
+                  ? "Завантаження…"
+                  : "Показати ще"}
               </AppButton>
             </div>
           )}

@@ -34,3 +34,21 @@
 .feedbacksCardLocation {
   font-size: 10px;
 }
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1440px) {
+  .feedbacksCardDescription {
+    font-size: 20px;
+  }
+
+  .feedbacksCardAuthor {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .feedbacksCardLocation {
+    font-size: 12px;
+  }
+}

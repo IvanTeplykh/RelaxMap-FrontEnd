@@ -7,12 +7,12 @@ interface LogoProps {
 
 export default function Logo({ onClick }: LogoProps) {
   return (
-    <div className={css.logoWrapper} onClick={onClick}>
-      <Link href="/" className={css.logo}>
-        <svg className={css.logoIconWrapper}>
+    <div className={css.logoWrapper}>
+      <Link href="/" className={css.logo} onClick={onClick}>
+        <svg className={css.logoIconWrapper} aria-hidden="true">
           <use className={css.logoIcon} href="/sprite.svg#map_search"></use>
         </svg>
-        <p className={css.logoText}>Relax Map</p>
+        <span className={css.logoText}>Relax Map</span>
       </Link>
     </div>
   );

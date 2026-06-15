@@ -14,24 +14,26 @@ interface MenuProps {
 export default function Menu({ user, isAuth, onNavigate }: MenuProps) {
   return (
     <div className={css.menuWrapper}>
-      <NavList isAuth={isAuth} onNavigate={onNavigate} />
-      {isAuth ? (
-        <div className={css.profileWrapper}>
-          <AppLink
-            href="/locations/add"
-            variant="primary"
-            className={css.authLink}
-            onClick={onNavigate}
-          >
-            Поділитись локацією
-          </AppLink>
-          <Profile user={user} onNavigate={onNavigate} />
-        </div>
-      ) : (
-        <div className={css.authNavWrapper}>
-          <AuthNav isAuth={isAuth} onNavigate={onNavigate} />
-        </div>
-      )}
+      <div className={css.container}>
+        <NavList isAuth={isAuth} onNavigate={onNavigate} />
+        {isAuth ? (
+          <div className={css.profileWrapper}>
+            <AppLink
+              href="/locations/add"
+              variant="primary"
+              className={css.authLink}
+              onClick={onNavigate}
+            >
+              Поділитись локацією
+            </AppLink>
+            <Profile user={user} onNavigate={onNavigate} />
+          </div>
+        ) : (
+          <div className={css.authNavWrapper}>
+            <AuthNav isAuth={isAuth} onNavigate={onNavigate} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

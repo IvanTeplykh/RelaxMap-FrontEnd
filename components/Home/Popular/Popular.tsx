@@ -22,7 +22,11 @@ export default function Popular({ locations }: PopularProps) {
       <div className={css.container}>
         <div className={css.popularHeader}>
           <h2 className={css.popularHeaderTitle}>Популярні локації</h2>
-          <AppLink className={css.popularHeaderLink} href="/locations">
+          <AppLink
+            className={css.popularHeaderLink}
+            href="/locations"
+            ariaLabel="Подивитися всі локації"
+          >
             Всі локації
           </AppLink>
         </div>
@@ -62,10 +66,18 @@ export default function Popular({ locations }: PopularProps) {
         </Swiper>
 
         <div className={css.navigation}>
-          <AppButton className={css.btnPrev} variant="secondary">
+          <AppButton
+            className={css.btnPrev}
+            variant="secondary"
+            ariaLabel="Previous"
+          >
             <Icon className={css.iconPrev} name="arrow_back" />
           </AppButton>
-          <AppButton className={css.btnNext} variant="secondary">
+          <AppButton
+            className={css.btnNext}
+            variant="secondary"
+            ariaLabel="Next"
+          >
             <Icon className={css.iconNext} name="arrow_forward" />
           </AppButton>
         </div>
