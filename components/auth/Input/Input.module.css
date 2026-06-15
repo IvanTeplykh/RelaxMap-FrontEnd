@@ -20,7 +20,7 @@
   line-height: 150%;
   color: var(--color-neutral-darker);
   background-color: var(--color-coral-lighter);
-  border: 1px solid var(--color-coral-light);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   outline: none;
   transition: border-color 0.2s ease;
@@ -31,7 +31,7 @@
 }
 
 .Input:focus {
-  border-color: var(--color-coral);
+  border-color: var(--color-coral-dark);
 }
 
 .InputError,

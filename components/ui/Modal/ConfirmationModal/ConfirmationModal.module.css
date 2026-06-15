@@ -14,12 +14,27 @@
   text-align: center;
   color: var(--color-neutral-darkest);
 }
+@media only screen and (min-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .title {
+    font-size: 48px;
+  }
+}
 .description {
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
   text-align: center;
   color: var(--color-neutral-darkest);
+}
+@media only screen and (min-width: 1440px) {
+  .description {
+    font-size: 20px;
+  }
 }
 .buttonsWrapper {
   display: flex;
@@ -28,6 +43,11 @@
   width: 100%;
 
   gap: 24px;
+}
+@media only screen and (min-width: 768px) {
+  .buttonsWrapper {
+    flex-direction: row;
+  }
 }
 .btn {
   border-radius: 6px;

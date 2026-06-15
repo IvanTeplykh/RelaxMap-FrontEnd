@@ -5,10 +5,10 @@ import { useLogout } from "@/hooks/useLogout";
 export default function ConfirmationPage() {
   const handleLogout = useLogout();
   return (
-    <ConfirmationModal
-      title="Ви впевнені, що хочете вийти?"
-      confirmButtonText="Так"
-      cancelButtonText="Ні"
+ <ConfirmationModal
+      title="Ви точно хочете вийти?"
+      confirmButtonText="Вийти"
+      cancelButtonText="Відмінити"
       onConfirm={handleLogout}
     />
   );

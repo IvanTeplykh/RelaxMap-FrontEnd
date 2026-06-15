@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 
 export default function CreateLocationPage() {
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <section
         className={styles.section}
         aria-labelledby="create-location-title"
@@ -13,6 +13,6 @@ export default function CreateLocationPage() {
         </h1>
         <LocationForm mode="create" />
       </section>
-    </main>
+    </div>
   );
 }

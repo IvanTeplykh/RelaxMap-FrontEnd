@@ -8,7 +8,7 @@ import { register } from '@/lib/authApi';
 import { useAuthStore } from '@/store';
 import type { RegisterData } from '@/types';
 import { Input } from '@/components/auth/Input/Input';
-import { Button } from '@/components/auth/Button/Button';
+import { AppButton } from '@/components/ui';
 import styles from './RegisterForm.module.css';
 
 const registerSchema = Yup.object({
@@ -38,12 +38,12 @@ export function RegisterForm() {
     initialValues,
     validationSchema: registerSchema,
     validateOnChange: false,
-    validateOnBlur: false,
+    validateOnBlur: true,
     onSubmit: async (values) => {
       try {
         const user = await register(values);
         setUser(user);
-        router.push('/');
+        router.push('/profile');
       } catch (error) {
         toast.error(
           error instanceof Error
@@ -59,26 +59,30 @@ export function RegisterForm() {
       <Input
         label="Ім'я*"
         placeholder="Ваше ім'я"
-        error={formik.errors.name}
+        error={formik.touched.name ? formik.errors.name : undefined}
         {...formik.getFieldProps('name')}
       />
       <Input
         label="Пошта*"
         type="email"
         placeholder="hello@relaxmap.ua"
-        error={formik.errors.email}
+        error={formik.touched.email ? formik.errors.email : undefined}
         {...formik.getFieldProps('email')}
       />
       <Input
         label="Пароль*"
         type="password"
         placeholder="********"
-        error={formik.errors.password}
+        error={formik.touched.password ? formik.errors.password : undefined}
         {...formik.getFieldProps('password')}
       />
-      <Button type="submit" disabled={formik.isSubmitting}>
+      <AppButton
+        type="submit"
+        disabled={formik.isSubmitting}
+        className={styles.SubmitButton}
+      >
         Зареєструватись
-      </Button>
+      </AppButton>
     </form>
   );
 }

@@ -15,8 +15,8 @@ interface ConfirmationModalProps {
 
 const ConfirmationModal = ({
   title,
-  confirmButtonText,
-  cancelButtonText,
+  confirmButtonText = "Вийти",
+  cancelButtonText = "Відмінити",
   onConfirm,
   onCancel,
 }: ConfirmationModalProps) => {

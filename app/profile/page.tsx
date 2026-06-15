@@ -1,14 +1,14 @@
 "use client";
 
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { useAuthStore } from "@/store";
-import { getUserLocations, getUserProfile } from "@/lib/usersApi";
-import type { LocationsResponse } from "@/types/profile";
-import { ProfileHeader } from "@/components/profile/ProfileHeader/ProfileHeader";
-import { EmptyLocations } from "@/components/profile/EmptyLocations/EmptyLocations";
-import { LocationCard } from "@/components/locations";
-import { AppButton } from "@/components/ui";
-import styles from "./page.module.css";
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useAuthStore } from '@/store';
+import { getUserLocations, getUserProfile } from '@/lib/usersApi';
+import type { LocationsResponse } from '@/types/profile';
+import { ProfileHeader } from '@/components/profile/ProfileHeader/ProfileHeader';
+import { EmptyLocations } from '@/components/profile/EmptyLocations/EmptyLocations';
+import { LocationCard } from '@/components/locations';
+import { AppButton, Loader } from '@/components/ui';
+import styles from './page.module.css';
 
 const PER_PAGE = 6;
 
@@ -32,12 +32,23 @@ export default function ProfilePage() {
       lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
   });
 
+  const { data: locationTypes = [] } = useQuery({
+    queryKey: ['locationTypes'],
+    queryFn: async (): Promise<Array<{ slug: string; type: string }>> => {
+      const res = await fetch('/api/categories/location-types', {
+        cache: 'no-store',
+      });
+      if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
+      return res.json();
+    },
+  });
+
   if (!userId) {
     return null;
   }
 
   if (profileQuery.isLoading || locationsQuery.isLoading) {
-    return <p className={styles.State}>Завантаження…</p>;
+    return <Loader fullScreen />;
   }
 
   if (profileQuery.isError || locationsQuery.isError || !profileQuery.data) {
@@ -49,7 +60,9 @@ export default function ProfilePage() {
   const totalLocations = pages[0]?.totalLocations ?? 0;
   const locations = pages.flatMap((page) => page.locations);
 
-  console.log("Profile:", profile.avatarUrl);
+  const locationTypeLabels = Object.fromEntries(
+    locationTypes.map((item) => [item.slug, item.type]),
+  );
 
   return (
     <div className={styles.Wrapper}>
@@ -70,7 +83,14 @@ export default function ProfilePage() {
           <ul className={styles.Grid}>
             {locations.map((location) => (
               <li key={location._id}>
-                <LocationCard location={location} editable />
+                <LocationCard
+                  location={location}
+                  editable
+                  locationTypeLabel={
+                    locationTypeLabels[location.locationType] ||
+                    location.locationType
+                  }
+                />
               </li>
             ))}
           </ul>

@@ -1,0 +1,89 @@
+.LocationSection {
+  padding: 32px 0;
+}
+
+.InfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ReviewsSection {
+  padding: 64px 0;
+}
+
+.ReviewsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.ReviewsTitle {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-coral-darkest);
+}
+
+.SubmitReviewBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: var(--color-coral-dark);
+  color: var(--color-white);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.SubmitReviewBtn:hover,
+.SubmitReviewBtn:focus {
+  background-color: var(--color-coral-lighter);
+  border-color: var(--color-coral-dark);
+  color: var(--color-coral-darkest);
+}
+
+.SubmitReviewBtn:active {
+  background-color: var(--color-coral-dark);
+  border-color: transparent;
+  color: var(--color-white);
+  transform: scale(0.97);
+}
+
+@media screen and (min-width: 768px) {
+  .ReviewsTitle {
+    font-size: 44px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .LocationSection {
+    padding: 48px 0;
+  }
+
+  .InfoWrapper {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .ReviewsSection {
+    padding: 72px 0;
+  }
+
+  .ReviewsTitle {
+    font-size: 52px;
+  }
+
+  .SubmitReviewBtn {
+    padding: 9px 12px;
+    font-size: 20px;
+  }
+}

@@ -13,8 +13,7 @@ import {
   getRegions,
   type LocationCategoryOption,
 } from "@/lib/locationsApi";
-import { useAuthStore } from "@/store";
-import { AppButton } from "@/components/ui";
+import { AppButton, Loader } from "@/components/ui";
 import { classNames } from "@/lib/utils";
 import styles from "./LocationForm.module.css";
 
@@ -68,10 +67,6 @@ export function LocationForm({
   onCancel,
 }: LocationFormProps = {}) {
   const router = useRouter();
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  const [isAuthHydrated, setIsAuthHydrated] = useState(
-    () => useAuthStore.persist?.hasHydrated?.() ?? true,
-  );
   const [locationTypes, setLocationTypes] = useState<LocationCategoryOption[]>(
     [],
   );
@@ -231,22 +226,6 @@ export function LocationForm({
   }, [categoriesError, isCategoriesLoading, validateForm]);
 
   useEffect(() => {
-    const persistApi = useAuthStore.persist;
-
-    if (!persistApi) return;
-
-    return persistApi.onFinishHydration(() => {
-      setIsAuthHydrated(true);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (isAuthHydrated && !isLoggedIn) {
-      router.push("/login");
-    }
-  }, [isAuthHydrated, isLoggedIn, router]);
-
-  useEffect(() => {
     return () => {
       if (selectedImagePreviewUrl) URL.revokeObjectURL(selectedImagePreviewUrl);
     };
@@ -309,11 +288,17 @@ export function LocationForm({
   };
 
   return (
-    <form className={styles.form} onSubmit={formik.handleSubmit} noValidate>
+    <form
+      className={styles.form}
+      onSubmit={formik.handleSubmit}
+      noValidate
+      aria-busy={isCategoriesLoading || formik.isSubmitting}
+    >
+      {isCategoriesLoading && <Loader overlay size="lg" />}
       <div className={styles.fieldGroup}>
-        <label className={styles.label} htmlFor="location-image">
+        <p className={styles.label} id="location-image-label">
           Обкладинка
-        </label>
+        </p>
         <div className={styles.imagePreview}>
           <Image
             src={
@@ -342,7 +327,11 @@ export function LocationForm({
           ref={fileInputRef}
           onChange={handleImageChange}
         />
-        <label className={styles.uploadButton} htmlFor="location-image">
+        <label
+          className={styles.uploadButton}
+          htmlFor="location-image"
+          id="location-image-upload-label"
+        >
           Завантажити фото
         </label>
         {getError("image") && (
@@ -384,6 +373,7 @@ export function LocationForm({
             id="location-type"
             className={classNames(
               styles.input,
+              !formik.values.locationType && styles.placeholderSelect,
               getError("locationType") && styles.selectError,
             )}
             disabled={isCategoriesLoading || categoriesError !== null}
@@ -413,6 +403,7 @@ export function LocationForm({
             id="location-region"
             className={classNames(
               styles.input,
+              !formik.values.region && styles.placeholderSelect,
               getError("region") && styles.selectError,
             )}
             disabled={isCategoriesLoading || categoriesError !== null}
@@ -462,13 +453,16 @@ export function LocationForm({
           type="submit"
           disabled={isSubmitDisabled}
         >
-          {formik.isSubmitting
-            ? isEditMode
-              ? "Зберігаємо..."
-              : "Публікуємо..."
-            : isEditMode
-              ? "Зберегти зміни"
-              : "Опублікувати"}
+          {formik.isSubmitting ? (
+            <span className={styles.buttonLoaderContent}>
+              <Loader size="sm" variant="white" />
+              {isEditMode ? "Зберігаємо..." : "Публікуємо..."}
+            </span>
+          ) : isEditMode ? (
+            "Зберегти зміни"
+          ) : (
+            "Опублікувати"
+          )}
         </AppButton>
         <AppButton
           className={styles.actionButton}

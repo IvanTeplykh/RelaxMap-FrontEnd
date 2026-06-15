@@ -8,7 +8,7 @@ import { login } from '@/lib/authApi';
 import { useAuthStore } from '@/store';
 import type { LoginData } from '@/types';
 import { Input } from '@/components/auth/Input/Input';
-import { Button } from '@/components/auth/Button/Button';
+import { AppButton } from '@/components/ui';
 import styles from './LoginForm.module.css';
 
 const loginSchema = Yup.object({
@@ -33,12 +33,12 @@ export function LoginForm() {
     initialValues,
     validationSchema: loginSchema,
     validateOnChange: false,
-    validateOnBlur: false,
+    validateOnBlur: true,
     onSubmit: async (values) => {
       try {
         const user = await login(values);
         setUser(user);
-        router.push('/');
+        router.push('/profile');
       } catch (error) {
         toast.error(
           error instanceof Error
@@ -55,19 +55,23 @@ export function LoginForm() {
         label="Пошта*"
         type="email"
         placeholder="hello@relaxmap.ua"
-        error={formik.errors.email}
+        error={formik.touched.email ? formik.errors.email : undefined}
         {...formik.getFieldProps('email')}
       />
       <Input
         label="Пароль*"
         type="password"
         placeholder="********"
-        error={formik.errors.password}
+        error={formik.touched.password ? formik.errors.password : undefined}
         {...formik.getFieldProps('password')}
       />
-      <Button type="submit" disabled={formik.isSubmitting}>
+      <AppButton
+        type="submit"
+        disabled={formik.isSubmitting}
+        className={styles.SubmitButton}
+      >
         Увійти
-      </Button>
+      </AppButton>
     </form>
   );
 }
