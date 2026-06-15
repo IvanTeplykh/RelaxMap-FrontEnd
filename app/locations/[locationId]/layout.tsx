@@ -41,6 +41,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function LocationLayout({ children }: { children: ReactNode }) {
-  return <>{children}</>;
+export default function LocationLayout({
+  children,
+  modal,
+}: {
+  children: ReactNode;
+  modal: ReactNode;
+}) {
+  return (
+    <>
+      {children}
+      {modal}
+    </>
+  );
 }

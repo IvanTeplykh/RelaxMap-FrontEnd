@@ -1,0 +1,22 @@
+.subTitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000;
+
+  margin-bottom: 8px;
+}
+
+@media only screen and (min-width: 1440px) {
+  .subTitle {
+    font-size: 18px;
+  }
+}
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.actions {
+  justify-content: center;
+}

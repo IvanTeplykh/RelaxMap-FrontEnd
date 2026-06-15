@@ -4,6 +4,8 @@ import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
+import styles from "../../add/page.module.css";
+
 import { getLocationById, updateLocation } from "@/lib/locationsApi";
 import type { Location } from "@/types/profile";
 import {
@@ -58,21 +60,24 @@ export default function EditLocationPage({ params }: EditLocationPageProps) {
   }
 
   return (
-    <div>
-      <h1>Редагування місця</h1>
-      {locationData && (
-        <LocationForm
-          mode="edit"
-          initialValues={{
-            name: locationData.name,
-            locationType: locationData.locationType,
-            region: locationData.region,
-          }}
-          initialImageUrl={locationData.image}
-          onSubmit={handleSubmit}
-          onCancel={() => router.back()}
-        />
-      )}
+    <div className={styles.page}>
+      <section className={styles.section}>
+        <h1 className={styles.title}>Редагування місця</h1>
+        {locationData && (
+          <LocationForm
+            mode="edit"
+            initialValues={{
+              name: locationData.name,
+              locationType: locationData.locationType,
+              region: locationData.region,
+              description: locationData.description || "",
+            }}
+            initialImageUrl={locationData.image}
+            onSubmit={handleSubmit}
+            onCancel={() => router.back()}
+          />
+        )}
+      </section>
     </div>
   );
 }

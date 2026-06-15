@@ -1,5 +1,5 @@
 .headerWrapper {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 
   display: flex;
   flex-direction: column;
@@ -14,14 +14,9 @@
   text-align: center;
   color: var(--color-neutral-darkest);
 }
-@media only screen and (min-width: 768px) {
-  .title {
-    font-size: 32px;
-  }
-}
 @media only screen and (min-width: 1440px) {
   .title {
-    font-size: 48px;
+    font-size: 32px;
   }
 }
 .description {
@@ -31,11 +26,6 @@
   text-align: center;
   color: var(--color-neutral-darkest);
 }
-@media only screen and (min-width: 1440px) {
-  .description {
-    font-size: 20px;
-  }
-}
 .buttonsWrapper {
   display: flex;
   flex-direction: column;
@@ -43,11 +33,6 @@
   width: 100%;
 
   gap: 24px;
-}
-@media only screen and (min-width: 768px) {
-  .buttonsWrapper {
-    flex-direction: row;
-  }
 }
 .btn {
   border-radius: 6px;
