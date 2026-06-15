@@ -7,8 +7,8 @@ export default function ConfirmationPage() {
   return (
     <ConfirmationModal
       title="Ви впевнені, що хочете вийти?"
-      confirmButtonText="Так"
-      cancelButtonText="Ні"
+      confirmButtonText="Вийти"
+      cancelButtonText="Відмінити"
       onConfirm={handleLogout}
     />
   );
