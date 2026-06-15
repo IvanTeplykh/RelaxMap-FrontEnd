@@ -6,6 +6,12 @@ import { Footer } from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import { ModalProvider } from "@/providers/modal-provider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin", "cyrillic"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "RelaxMap",
@@ -35,4 +41,3 @@ export default function RootLayout({
     </html>
   );
 }
-
