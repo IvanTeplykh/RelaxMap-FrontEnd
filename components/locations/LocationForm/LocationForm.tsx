@@ -13,8 +13,7 @@ import {
   getRegions,
   type LocationCategoryOption,
 } from "@/lib/locationsApi";
-import { useAuthStore } from "@/store";
-import { AppButton } from "@/components/ui";
+import { AppButton, Loader } from "@/components/ui";
 import { classNames } from "@/lib/utils";
 import styles from "./LocationForm.module.css";
 
@@ -289,7 +288,13 @@ export function LocationForm({
   };
 
   return (
-    <form className={styles.form} onSubmit={formik.handleSubmit} noValidate>
+    <form
+      className={styles.form}
+      onSubmit={formik.handleSubmit}
+      noValidate
+      aria-busy={isCategoriesLoading || formik.isSubmitting}
+    >
+      {isCategoriesLoading && <Loader overlay size="lg" />}
       <div className={styles.fieldGroup}>
         <p className={styles.label} id="location-image-label">
           Обкладинка
@@ -448,13 +453,16 @@ export function LocationForm({
           type="submit"
           disabled={isSubmitDisabled}
         >
-          {formik.isSubmitting
-            ? isEditMode
-              ? "Зберігаємо..."
-              : "Публікуємо..."
-            : isEditMode
-              ? "Зберегти зміни"
-              : "Опублікувати"}
+          {formik.isSubmitting ? (
+            <span className={styles.buttonLoaderContent}>
+              <Loader size="sm" variant="white" />
+              {isEditMode ? "Зберігаємо..." : "Публікуємо..."}
+            </span>
+          ) : isEditMode ? (
+            "Зберегти зміни"
+          ) : (
+            "Опублікувати"
+          )}
         </AppButton>
         <AppButton
           className={styles.actionButton}
