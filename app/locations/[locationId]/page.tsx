@@ -12,6 +12,7 @@ import { LocationGallery } from "@/components/LocationDetails/LocationGallery/Lo
 import { LocationInfoBlock } from "@/components/LocationDetails/LocationInfoBlock/LocationInfoBlock";
 import { LocationDescription } from "@/components/LocationDetails/LocationDescription/LocationDescription";
 import { ReviewsBlock } from "@/components/LocationDetails/ReviewsBlock/ReviewsBlock";
+import { AppButton } from "@/components/ui/Button/Button";
 
 import css from "./page.module.css";
 
@@ -62,6 +63,13 @@ export default function LocationDetailsPage() {
       </section>
 
       <section className={css.ReviewsSection}>
+        <div className={css.ReviewsHeader}>
+          <h2 className={css.ReviewsTitle}>Відгуки</h2>
+          <AppButton variant="primary" className={css.SubmitReviewBtn}>
+            Залишити відгук
+          </AppButton>
+        </div>
+
         <ReviewsBlock locationId={locationId} feedbacks={feedbacks} />
       </section>
     </div>

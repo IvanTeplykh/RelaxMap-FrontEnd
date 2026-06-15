@@ -12,7 +12,29 @@
   padding: 64px 0;
 }
 
+.ReviewsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.ReviewsTitle {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-coral-darkest);
+}
+
+.SubmitReviewBtn {
+  padding: 12px;
+}
+
 @media screen and (min-width: 768px) {
+  .ReviewsTitle {
+    font-size: 44px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -27,5 +49,13 @@
 
   .ReviewsSection {
     padding: 72px 0;
+  }
+
+  .ReviewsTitle {
+    font-size: 52px;
+  }
+
+  .SubmitReviewBtn {
+    padding: 9px 12px;
   }
 }
