@@ -29,6 +29,11 @@
   .contentArea {
     min-height: 600px;
   }
+  .loaderWrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+  }
 }
 
 @media only screen and (min-width: 768px) {

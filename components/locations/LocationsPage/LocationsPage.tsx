@@ -133,7 +133,11 @@ export const LocationsPage = () => {
         onSortChange={setSort}
       />
       <div className={css.contentArea}>
-        {isLoading && <Loader fullScreen />}
+        {isLoading && (
+          <div className={css.loaderWrapper}>
+            <Loader size="lg" />
+          </div>
+        )}
 
         {isError && (
           <p className={css.statusMessage}> Не вдалося завантажити локації </p>

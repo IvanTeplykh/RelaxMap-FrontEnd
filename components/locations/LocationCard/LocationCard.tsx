@@ -9,14 +9,12 @@ interface LocationCardProps {
   location: Location;
   editable?: boolean;
   locationTypeLabel?: string;
-  priority?: boolean;
 }
 
 export function LocationCard({
   location,
   editable = false,
   locationTypeLabel,
-  priority = false,
 }: LocationCardProps) {
   const rate = location.rate ?? location.rating ?? 0;
 
@@ -29,7 +27,6 @@ export function LocationCard({
           fill
           sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
           className={styles.Image}
-          priority={priority}
         />
       </div>
 
