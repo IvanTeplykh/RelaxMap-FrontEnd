@@ -9,6 +9,12 @@ const privateApi = axios.create({
   withCredentials: true,
 });
 
+export interface AddFeedbackPayload {
+  locationId: string;
+  rate: number;
+  description: string;
+}
+
 export async function getFeedbacks(
   locationId?: string,
   page = 1,
@@ -41,4 +47,10 @@ export async function getAllFeedbacksSorted(): Promise<Feedback[]> {
   return allFeedbacks.sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
+}
+
+export async function addFeedback(payload: AddFeedbackPayload) {
+  const { data } = await privateApi.post("/feedbacks", payload);
+
+  return data;
 }
