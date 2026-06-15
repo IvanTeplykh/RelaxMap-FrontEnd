@@ -1,7 +1,10 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+
+import { useAuthStore } from "@/store";
+import { useModal } from "@/hooks/use-modal-store";
 
 import { getLocationDetailsById } from "@/lib/locationsApi";
 import { getFeedbacksByLocationId } from "@/lib/feedbacksApi";
@@ -13,7 +16,6 @@ import { LocationGallery } from "@/components/LocationDetails/LocationGallery/Lo
 import { LocationInfoBlock } from "@/components/LocationDetails/LocationInfoBlock/LocationInfoBlock";
 import { LocationDescription } from "@/components/LocationDetails/LocationDescription/LocationDescription";
 import { ReviewsBlock } from "@/components/LocationDetails/ReviewsBlock/ReviewsBlock";
-import { AppLink } from "@/components/ui/Button/Button";
 
 import css from "./page.module.css";
 
@@ -21,6 +23,9 @@ const PER_PAGE = 10;
 
 export default function LocationDetailsPage() {
   const { locationId } = useParams<{ locationId: string }>();
+  const router = useRouter();
+  const { onOpen } = useModal();
+  const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
 
   const locationQuery = useQuery<LocationDetails>({
     queryKey: ["location", locationId],
@@ -66,13 +71,19 @@ export default function LocationDetailsPage() {
       <section className={css.ReviewsSection}>
         <div className={css.ReviewsHeader}>
           <h2 className={css.ReviewsTitle}>Відгуки</h2>
-          <AppLink
-            href={`/locations/${locationId}/feedback`}
-            variant="primary"
+          <button
+            type="button"
             className={css.SubmitReviewBtn}
+            onClick={() => {
+              if (isLoggedIn) {
+                router.push(`/locations/${locationId}/feedback`);
+              } else {
+                onOpen("AuthPromptModal");
+              }
+            }}
           >
             Залишити відгук
-          </AppLink>
+          </button>
         </div>
 
         <ReviewsBlock locationId={locationId} feedbacks={feedbacks} />
