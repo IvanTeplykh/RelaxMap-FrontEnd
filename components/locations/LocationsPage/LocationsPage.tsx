@@ -8,6 +8,7 @@ import { FilterPanel } from "../FilterPanel/FilterPanel";
 import { LocationsGrid } from "../LocationsGrid/LocationsGrid";
 import css from "./LocationsPage.module.css";
 import { useMediaQuery } from "react-responsive";
+import { Loader } from "@/components/ui";
 
 export const LocationsPage = () => {
   const router = useRouter();
@@ -131,26 +132,31 @@ export const LocationsPage = () => {
         onRegionChange={setRegion}
         onSortChange={setSort}
       />
-      {isLoading && <p className={css.statusMessage}>Завантаження...</p>}
+      <div className={css.contentArea}>
+        {isLoading && (
+          <div className={css.loaderWrapper}>
+            <Loader size="lg" />
+          </div>
+        )}
 
-      {isError && (
-        <p className={css.statusMessage}> Не вдалося завантажити локації </p>
-      )}
+        {isError && (
+          <p className={css.statusMessage}> Не вдалося завантажити локації </p>
+        )}
 
-      {!isLoading && !isError && locations.length === 0 && (
-        <p className={css.statusMessage}>Нічого не знайдено</p>
-      )}
-
-      {!isLoading && !isError && locations.length > 0 && (
-        <LocationsGrid
-          locations={locations}
-          locationTypeLabels={locationTypeLabels}
-          listRef={listRef}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          onLoadMore={handleLoadMore}
-        />
-      )}
+        {!isLoading && !isError && locations.length === 0 && (
+          <p className={css.statusMessage}>Нічого не знайдено</p>
+        )}
+        {!isLoading && !isError && locations.length > 0 && (
+          <LocationsGrid
+            locations={locations}
+            locationTypeLabels={locationTypeLabels}
+            listRef={listRef}
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+            onLoadMore={handleLoadMore}
+          />
+        )}
+      </div>
     </>
   );
 };

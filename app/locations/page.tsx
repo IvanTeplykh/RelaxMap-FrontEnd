@@ -6,7 +6,7 @@ export default function LocationsRoutePage() {
   return (
     <div className={css.page}>
       <div className={css.container}>
-        <Suspense fallback={<p>Завантаження...</p>}>
+        <Suspense fallback={null}>
           <LocationsPage />
         </Suspense>
       </div>
