@@ -33,7 +33,7 @@ export function LoginForm() {
     initialValues,
     validationSchema: loginSchema,
     validateOnChange: false,
-    validateOnBlur: false,
+    validateOnBlur: true,
     onSubmit: async (values) => {
       try {
         const user = await login(values);
@@ -55,14 +55,14 @@ export function LoginForm() {
         label="Пошта*"
         type="email"
         placeholder="hello@relaxmap.ua"
-        error={formik.errors.email}
+        error={formik.touched.email ? formik.errors.email : undefined}
         {...formik.getFieldProps('email')}
       />
       <Input
         label="Пароль*"
         type="password"
         placeholder="********"
-        error={formik.errors.password}
+        error={formik.touched.password ? formik.errors.password : undefined}
         {...formik.getFieldProps('password')}
       />
       <AppButton

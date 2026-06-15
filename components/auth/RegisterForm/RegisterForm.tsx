@@ -38,7 +38,7 @@ export function RegisterForm() {
     initialValues,
     validationSchema: registerSchema,
     validateOnChange: false,
-    validateOnBlur: false,
+    validateOnBlur: true,
     onSubmit: async (values) => {
       try {
         const user = await register(values);
@@ -59,21 +59,21 @@ export function RegisterForm() {
       <Input
         label="Ім'я*"
         placeholder="Ваше ім'я"
-        error={formik.errors.name}
+        error={formik.touched.name ? formik.errors.name : undefined}
         {...formik.getFieldProps('name')}
       />
       <Input
         label="Пошта*"
         type="email"
         placeholder="hello@relaxmap.ua"
-        error={formik.errors.email}
+        error={formik.touched.email ? formik.errors.email : undefined}
         {...formik.getFieldProps('email')}
       />
       <Input
         label="Пароль*"
         type="password"
         placeholder="********"
-        error={formik.errors.password}
+        error={formik.touched.password ? formik.errors.password : undefined}
         {...formik.getFieldProps('password')}
       />
       <AppButton
