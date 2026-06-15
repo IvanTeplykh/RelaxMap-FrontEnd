@@ -7,6 +7,7 @@ import { getLocationDetailsById } from "@/lib/locationsApi";
 import { getFeedbacksByLocationId } from "@/lib/feedbacksApi";
 
 import type { LocationDetails } from "@/types/location";
+import { Loader } from "@/components/ui/Loader/Loader";
 
 import { LocationGallery } from "@/components/LocationDetails/LocationGallery/LocationGallery";
 import { LocationInfoBlock } from "@/components/LocationDetails/LocationInfoBlock/LocationInfoBlock";
@@ -39,7 +40,7 @@ export default function LocationDetailsPage() {
   });
 
   if (locationQuery.isLoading || feedbacksQuery.isLoading) {
-    return <p className={css.State}>Завантаження…</p>;
+    return <Loader fullScreen size="lg" variant="primary" />;
   }
 
   if (locationQuery.isError || feedbacksQuery.isError || !locationQuery.data) {
