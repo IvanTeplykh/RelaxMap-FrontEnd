@@ -32,30 +32,32 @@ export default function Header() {
 
   return (
     <div className={css.headerWrapper}>
-      <Logo onClick={closeMenu} />
-      <div className={css.navWrapper}>
-        {pathname !== "/login" && pathname !== "/register" && (
-          <>
-            <div className={css.navListWrapper}>
-              <NavList isAuth={isAuth} />
-            </div>
-            <div className={css.authNavWrapper}>
-              <AuthNav isAuth={isAuth} onNavigate={closeMenu} />
-            </div>
-            {isAuth && (
-              <div className={css.profileWrapper}>
-                <Profile user={user} />
+      <div className={css.container}>
+        <Logo onClick={closeMenu} />
+        <div className={css.navWrapper}>
+          {pathname !== "/login" && pathname !== "/register" && (
+            <>
+              <div className={css.navListWrapper}>
+                <NavList isAuth={isAuth} />
               </div>
-            )}
-            <BurgerMenu
-              isMenuOpen={isMenuOpen}
-              handleMenuClick={handleMenuClick}
-            />
-            {isMenuOpen && (
-              <Menu user={user} isAuth={isAuth} onNavigate={closeMenu} />
-            )}
-          </>
-        )}
+              <div className={css.authNavWrapper}>
+                <AuthNav isAuth={isAuth} onNavigate={closeMenu} />
+              </div>
+              {isAuth && (
+                <div className={css.profileWrapper}>
+                  <Profile user={user} />
+                </div>
+              )}
+              <BurgerMenu
+                isMenuOpen={isMenuOpen}
+                handleMenuClick={handleMenuClick}
+              />
+              {isMenuOpen && (
+                <Menu user={user} isAuth={isAuth} onNavigate={closeMenu} />
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

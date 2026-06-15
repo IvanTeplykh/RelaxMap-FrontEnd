@@ -1,4 +1,5 @@
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -200,6 +201,13 @@ select.input option:checked {
   width: 100%;
   min-height: 48px;
   padding: 6px 12px;
+}
+
+.buttonLoaderContent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 @media (min-width: 768px) {

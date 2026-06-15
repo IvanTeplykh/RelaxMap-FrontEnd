@@ -2,7 +2,6 @@
 
 import css from "./NavList.module.css";
 import Link from "next/link";
-import { useAuthStore } from "@/store/authStore";
 
 interface NavListProps {
   isAuth: boolean;
@@ -10,8 +9,6 @@ interface NavListProps {
 }
 
 export default function NavList({ isAuth, onNavigate }: NavListProps) {
-  const id = useAuthStore((state) => state.user?.id);
-
   return (
     <ul className={css.navList}>
       <li className={css.navItem}>
