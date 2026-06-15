@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import Modal from "../Modal";
 import css from "./AddReviewModal.module.css";
 import AddFeedbackForm, {
@@ -12,6 +13,7 @@ import { addFeedback } from "@/lib/feedbacks";
 const AddReviewModal = () => {
   const router = useRouter();
   const params = useParams();
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
 
   const locationId = params.locationId as string;
@@ -27,6 +29,8 @@ const AddReviewModal = () => {
       });
 
       toast.success("Ваш відгук відправлено на модерацію");
+
+      queryClient.invalidateQueries({ queryKey: ["feedbacks", locationId] });
 
       router.back();
     } catch (error) {
