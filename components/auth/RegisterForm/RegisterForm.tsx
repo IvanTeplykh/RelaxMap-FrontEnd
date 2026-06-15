@@ -8,7 +8,7 @@ import { register } from '@/lib/authApi';
 import { useAuthStore } from '@/store';
 import type { RegisterData } from '@/types';
 import { Input } from '@/components/auth/Input/Input';
-import { Button } from '@/components/auth/Button/Button';
+import { AppButton } from '@/components/ui';
 import styles from './RegisterForm.module.css';
 
 const registerSchema = Yup.object({
@@ -43,7 +43,7 @@ export function RegisterForm() {
       try {
         const user = await register(values);
         setUser(user);
-        router.push('/');
+        router.push('/profile');
       } catch (error) {
         toast.error(
           error instanceof Error
@@ -76,9 +76,13 @@ export function RegisterForm() {
         error={formik.errors.password}
         {...formik.getFieldProps('password')}
       />
-      <Button type="submit" disabled={formik.isSubmitting}>
+      <AppButton
+        type="submit"
+        disabled={formik.isSubmitting}
+        className={styles.SubmitButton}
+      >
         Зареєструватись
-      </Button>
+      </AppButton>
     </form>
   );
 }
