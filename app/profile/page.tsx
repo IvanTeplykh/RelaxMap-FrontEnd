@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useAuthStore } from '@/store';
@@ -17,13 +17,13 @@ export default function ProfilePage() {
   const userId = user?.id;
 
   const profileQuery = useQuery({
-    queryKey: ['profile', userId],
+    queryKey: ["profile", userId],
     queryFn: () => getUserProfile(userId as string),
     enabled: Boolean(userId),
   });
 
   const locationsQuery = useInfiniteQuery({
-    queryKey: ['profile-locations', userId],
+    queryKey: ["profile-locations", userId],
     queryFn: ({ pageParam }) =>
       getUserLocations(userId as string, pageParam, PER_PAGE),
     enabled: Boolean(userId),
@@ -104,8 +104,8 @@ export default function ProfilePage() {
                 className={styles.MoreButton}
               >
                 {locationsQuery.isFetchingNextPage
-                  ? 'Завантаження…'
-                  : 'Показати ще'}
+                  ? "Завантаження…"
+                  : "Показати ще"}
               </AppButton>
             </div>
           )}

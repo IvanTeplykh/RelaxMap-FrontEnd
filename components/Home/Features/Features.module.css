@@ -100,4 +100,10 @@
   .featuresItem {
     width: calc((100% - 48px) / 3);
   }
+  .featuresItemTitle {
+    font-size: 26px;
+  }
+  .featuresItemDescription {
+    font-size: 18px;
+  }
 }

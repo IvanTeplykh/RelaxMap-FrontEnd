@@ -1,9 +1,28 @@
 .intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   width: 100%;
   min-height: 708px;
-  background: url("/Header.jpg") no-repeat center/cover;
   display: flex;
   align-items: center;
+}
+.bgImage {
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
 }
 
 .container {
@@ -39,11 +58,12 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: center;
 }
 
 .searchInput {
   width: 100%;
-  padding: 8px;
+  padding: 7px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 6px;
@@ -64,6 +84,14 @@
   }
 }
 
+.searchButton {
+  padding: 6.5px 12px;
+  font-size: 16px;
+  line-height: 150%;
+  width: 100%;
+  font-weight: 500;
+}
+
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
@@ -79,8 +107,9 @@
     width: 331px;
   }
   .searchButton {
-    max-width: 137px;
-    padding: 7.5px 12px;
+    width: 0;
+    white-space: nowrap;
+    min-width: 165px;
   }
 }
 @media (min-width: 1440px) {
@@ -96,5 +125,10 @@
   }
   .searchInput {
     font-size: 18px;
+  }
+  .searchButton {
+    padding: 3.5px 12px;
+    font-size: 20px;
+    line-height: 150%;
   }
 }

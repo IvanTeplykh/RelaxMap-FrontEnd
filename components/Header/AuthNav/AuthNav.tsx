@@ -11,7 +11,7 @@ export default function AuthNav({ isAuth, onNavigate }: AuthNavProps) {
     <ul className={css.authNav}>
       {!isAuth ? (
         <>
-          <li>
+          <li className={css.authLinkItem}>
             <AppLink
               href="/login"
               variant="secondary"
@@ -21,7 +21,7 @@ export default function AuthNav({ isAuth, onNavigate }: AuthNavProps) {
               Вхід
             </AppLink>
           </li>
-          <li>
+          <li className={css.authLinkItem}>
             <AppLink
               href="/register"
               variant="primary"
@@ -33,7 +33,7 @@ export default function AuthNav({ isAuth, onNavigate }: AuthNavProps) {
           </li>
         </>
       ) : (
-        <li>
+        <li className={css.authLinkItem}>
           <AppLink
             href="/locations/add"
             variant="primary"

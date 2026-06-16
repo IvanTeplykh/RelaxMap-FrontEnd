@@ -1,7 +1,8 @@
+import { cache } from "react";
 import { getLocations } from "@/lib/locationsApi";
 import type { Location } from "@/types/profile";
 
-export async function getAllLocations(): Promise<Location[]> {
+export const getAllLocations = cache(async (): Promise<Location[]> => {
   let page = 1;
   let totalPages = 1;
   const allLocations: Location[] = [];
@@ -14,4 +15,4 @@ export async function getAllLocations(): Promise<Location[]> {
   } while (page <= totalPages);
 
   return allLocations;
-}
+});

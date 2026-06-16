@@ -1,7 +1,6 @@
 import axios from "axios";
-
 import { Feedback, FeedbacksResponse } from "@/types/feedbacks";
-import { getAllLocations } from "@/utils/getAllLocations";
+import type { Location } from "@/types/profile";
 
 const publicApi = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
 const privateApi = axios.create({
@@ -27,9 +26,9 @@ export async function getFeedbacks(
   return data;
 }
 
-export async function getAllFeedbacksSorted(): Promise<Feedback[]> {
-  const locations = await getAllLocations();
-
+export async function getAllFeedbacksSorted(
+  locations: Location[],
+): Promise<Feedback[]> {
   const locationsWithFeedbacks = locations.filter(
     (loc) => loc.feedbacksId && loc.feedbacksId.length > 0,
   );
