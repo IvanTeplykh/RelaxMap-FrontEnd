@@ -120,9 +120,7 @@ export function LocationForm({
             "Оберіть регіон зі списку",
           )
           .required("Оберіть регіон"),
-        address: Yup.string()
-          .trim()
-          .required("Вкажіть адресу місця"),
+        address: Yup.string().trim().required("Вкажіть адресу місця"),
         coordinates: Yup.object()
           .shape({
             lat: Yup.number().required(),
@@ -389,27 +387,32 @@ export function LocationForm({
           <label className={styles.label} htmlFor="location-type">
             Тип місця
           </label>
-          <select
-            id="location-type"
-            className={classNames(
-              styles.input,
-              !formik.values.locationType && styles.placeholderSelect,
-              getError("locationType") && styles.selectError,
-            )}
-            disabled={isCategoriesLoading || categoriesError !== null}
-            {...formik.getFieldProps("locationType")}
-          >
-            <option value="" disabled hidden>
-              {isCategoriesLoading
-                ? "Завантажуємо типи..."
-                : "Оберіть тип місця"}
-            </option>
-            {locationTypes.map((type) => (
-              <option key={type.value} value={type.value}>
-                {type.label}
+          <div className={styles.selectWrapper}>
+            <select
+              id="location-type"
+              className={classNames(
+                styles.input,
+                !formik.values.locationType && styles.placeholderSelect,
+                getError("locationType") && styles.selectError,
+              )}
+              disabled={isCategoriesLoading || categoriesError !== null}
+              {...formik.getFieldProps("locationType")}
+            >
+              <option value="" disabled hidden>
+                {isCategoriesLoading
+                  ? "Завантажуємо типи..."
+                  : "Оберіть тип місця"}
               </option>
-            ))}
-          </select>
+              {locationTypes.map((type) => (
+                <option key={type.value} value={type.value}>
+                  {type.label}
+                </option>
+              ))}
+            </select>
+            <svg className={styles.selectArrow} aria-hidden="true">
+              <use href="/sprite.svg#arrow-down" />
+            </svg>
+          </div>
           {getError("locationType") && (
             <p className={styles.error}>{getError("locationType")}</p>
           )}
@@ -419,27 +422,32 @@ export function LocationForm({
           <label className={styles.label} htmlFor="location-region">
             Регіон
           </label>
-          <select
-            id="location-region"
-            className={classNames(
-              styles.input,
-              !formik.values.region && styles.placeholderSelect,
-              getError("region") && styles.selectError,
-            )}
-            disabled={isCategoriesLoading || categoriesError !== null}
-            {...formik.getFieldProps("region")}
-          >
-            <option value="" disabled hidden>
-              {isCategoriesLoading
-                ? "Завантажуємо регіони..."
-                : "Оберіть регіон"}
-            </option>
-            {regions.map((region) => (
-              <option key={region.value} value={region.value}>
-                {region.label}
+          <div className={styles.selectWrapper}>
+            <select
+              id="location-region"
+              className={classNames(
+                styles.input,
+                !formik.values.region && styles.placeholderSelect,
+                getError("region") && styles.selectError,
+              )}
+              disabled={isCategoriesLoading || categoriesError !== null}
+              {...formik.getFieldProps("region")}
+            >
+              <option value="" disabled hidden>
+                {isCategoriesLoading
+                  ? "Завантажуємо регіони..."
+                  : "Оберіть регіон"}
               </option>
-            ))}
-          </select>
+              {regions.map((region) => (
+                <option key={region.value} value={region.value}>
+                  {region.label}
+                </option>
+              ))}
+            </select>
+            <svg className={styles.selectArrow} aria-hidden="true">
+              <use href="/sprite.svg#arrow-down" />
+            </svg>
+          </div>
           {getError("region") && (
             <p className={styles.error}>{getError("region")}</p>
           )}
@@ -460,8 +468,14 @@ export function LocationForm({
               const newLat = coords?.lat ?? null;
               const newLon = coords?.lon ?? null;
               const currentCoordinates = formik.values.coordinates;
-              if (currentCoordinates?.lat !== newLat || currentCoordinates?.lon !== newLon) {
-                formik.setFieldValue("coordinates", coords ? { lat: newLat, lon: newLon } : null);
+              if (
+                currentCoordinates?.lat !== newLat ||
+                currentCoordinates?.lon !== newLon
+              ) {
+                formik.setFieldValue(
+                  "coordinates",
+                  coords ? { lat: newLat, lon: newLon } : null,
+                );
               }
             }}
             initialCoordinates={formik.initialValues.coordinates}

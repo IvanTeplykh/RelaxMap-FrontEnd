@@ -89,7 +89,7 @@
 .input {
   width: 100%;
   min-height: 40px;
-  padding: 8px 12px;
+  padding: 8px;
   border: 1px solid var(--color-neutral-lighter);
   border-radius: 6px;
   background: var(--color-coral-lighter);
@@ -148,7 +148,29 @@
 }
 
 select.input {
+  padding: 8px;
   cursor: pointer;
+  appearance: none;
+}
+
+select.input::-ms-expand {
+  display: none;
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 12px;
+  height: 7px;
+  pointer-events: none;
+  fill: var(--color-coral-darkest);
+  transform: translateY(-50%) rotate(180deg);
 }
 
 select.input.placeholderSelect {
@@ -242,15 +264,14 @@ select.input option:checked {
     font-size: 18px;
   }
 
-  .uploadButton,
-  .input {
+  .uploadButton {
     font-size: 20px;
     line-height: 1.5;
   }
 
   .input {
+    font-size: 18px;
     height: 43px;
-    padding: 8px;
   }
 
   .textarea {
