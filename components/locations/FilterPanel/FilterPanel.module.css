@@ -295,7 +295,7 @@
     width: calc((431px - 16px) / 2);
   }
   .sortDropdown {
-    width: 158px;
+    width: 195px;
     margin-left: auto;
   }
 }
@@ -332,7 +332,7 @@
     width: 199px;
   }
   .sortDropdown {
-    width: 160px;
+    width: 195px;
   }
   .dropdownSummary {
     height: 43px;
