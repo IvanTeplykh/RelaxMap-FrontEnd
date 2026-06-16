@@ -55,7 +55,19 @@ export default function LocationMap({ coordinates, name }: LocationMapProps) {
         mapContainerClassName={css.mapContainer}
         center={center}
         zoom={hasCoordinates ? 12.5 : 5}
-        options={{ disableDefaultUI: true }}
+        options={{
+          disableDefaultUI: true,
+          styles: [
+            {
+              featureType: "poi",
+              stylers: [{ visibility: "off" }],
+            },
+            {
+              featureType: "transit",
+              stylers: [{ visibility: "off" }],
+            },
+          ],
+        }}
       >
         {hasCoordinates && (
           <>
