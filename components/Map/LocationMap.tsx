@@ -54,7 +54,7 @@ export default function LocationMap({ coordinates, name }: LocationMapProps) {
       <GoogleMap
         mapContainerClassName={css.mapContainer}
         center={center}
-        zoom={hasCoordinates ? 12.5 : 5}
+        zoom={hasCoordinates ? 12.5 : 5.6}
         options={{
           disableDefaultUI: true,
           styles: [

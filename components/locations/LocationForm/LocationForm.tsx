@@ -15,6 +15,7 @@ import {
 } from "@/lib/locationsApi";
 import { AppButton, Loader } from "@/components/ui";
 import { classNames } from "@/lib/utils";
+import LocationInputWithMap from "@/components/Map/LocationInputWithMapComponent";
 import styles from "./LocationForm.module.css";
 
 export type LocationFormValues = {
@@ -23,6 +24,11 @@ export type LocationFormValues = {
   region: string;
   description: string;
   image: File | null;
+  address?: string;
+  coordinates?: {
+    lat: number;
+    lon: number;
+  } | null;
 };
 
 const MAX_IMAGE_SIZE = 1024 * 1024;
@@ -34,6 +40,8 @@ const emptyLocationFormValues: LocationFormValues = {
   region: "",
   description: "",
   image: null,
+  address: "",
+  coordinates: null,
 };
 
 type LocationFormMode = "create" | "edit";
@@ -112,6 +120,16 @@ export function LocationForm({
             "Оберіть регіон зі списку",
           )
           .required("Оберіть регіон"),
+        address: Yup.string()
+          .trim()
+          .required("Вкажіть адресу місця"),
+        coordinates: Yup.object()
+          .shape({
+            lat: Yup.number().required(),
+            lon: Yup.number().required(),
+          })
+          .nullable()
+          .required("Оберіть місце на карті або знайдіть його за адресою"),
         description: Yup.string()
           .trim()
           .min(20, "Опис має містити щонайменше 20 символів")
@@ -143,8 +161,10 @@ export function LocationForm({
     validateOnMount: true,
     onSubmit: async (values) => {
       try {
+        const { address, ...submitValues } = values;
+
         if (isEditMode) {
-          await onSubmit?.(values);
+          await onSubmit?.(submitValues);
           toast.success("Зміни успішно збережено");
           return;
         }
@@ -154,7 +174,7 @@ export function LocationForm({
         }
 
         const createdLocation = await createLocation({
-          ...values,
+          ...submitValues,
           image: values.image,
         });
         toast.success("Локацію успішно опубліковано");
@@ -422,6 +442,32 @@ export function LocationForm({
           </select>
           {getError("region") && (
             <p className={styles.error}>{getError("region")}</p>
+          )}
+        </div>
+
+        <div className={styles.fieldGroup}>
+          <label className={styles.label}>
+            Адреса та розташування на карті
+          </label>
+          <LocationInputWithMap
+            location={formik.values.address || ""}
+            setLocation={(value) => {
+              if (formik.values.address !== value) {
+                formik.setFieldValue("address", value);
+              }
+            }}
+            onCoordinatesChange={(coords) => {
+              const newLat = coords?.lat ?? null;
+              const newLon = coords?.lon ?? null;
+              const currentCoordinates = formik.values.coordinates;
+              if (currentCoordinates?.lat !== newLat || currentCoordinates?.lon !== newLon) {
+                formik.setFieldValue("coordinates", coords ? { lat: newLat, lon: newLon } : null);
+              }
+            }}
+            initialCoordinates={formik.initialValues.coordinates}
+          />
+          {getError("coordinates") && (
+            <p className={styles.error}>{getError("coordinates") as string}</p>
           )}
         </div>
 

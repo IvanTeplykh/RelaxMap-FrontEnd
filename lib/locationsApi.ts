@@ -19,6 +19,10 @@ export interface CreateLocationPayload {
   region: string;
   description: string;
   image: File;
+  coordinates?: {
+    lat: number;
+    lon: number;
+  } | null;
 }
 
 interface GetLocationsParams {
@@ -104,6 +108,7 @@ export const createLocation = async ({
   region,
   description,
   image,
+  coordinates,
 }: CreateLocationPayload): Promise<Location> => {
   const formData = new FormData();
   formData.append("name", name.trim());
@@ -111,6 +116,11 @@ export const createLocation = async ({
   formData.append("region", region);
   formData.append("description", normalizeLocationDescription(description));
   formData.append("image", image);
+
+  if (coordinates) {
+    formData.append("coordinates[lat]", coordinates.lat.toString());
+    formData.append("coordinates[lon]", coordinates.lon.toString());
+  }
 
   try {
     const { data } = await privateApi.post<Location>("/locations", formData);
@@ -128,6 +138,10 @@ export interface UpdateLocationPayload {
   region: string;
   description: string;
   image?: File | null;
+  coordinates?: {
+    lat: number;
+    lon: number;
+  } | null;
 }
 
 export const getLocationById = async (id: string): Promise<Location> => {
@@ -158,7 +172,14 @@ export const getLocationDetailsById = async (
 
 export const updateLocation = async (
   id: string,
-  { name, locationType, region, description, image }: UpdateLocationPayload,
+  {
+    name,
+    locationType,
+    region,
+    description,
+    image,
+    coordinates,
+  }: UpdateLocationPayload,
 ): Promise<Location> => {
   const formData = new FormData();
   formData.append("name", name.trim());
@@ -168,6 +189,10 @@ export const updateLocation = async (
 
   if (image) {
     formData.append("image", image);
+  }
+  if (coordinates) {
+    formData.append("coordinates[lat]", coordinates.lat.toString());
+    formData.append("coordinates[lon]", coordinates.lon.toString());
   }
 
   try {
