@@ -22,6 +22,7 @@ export function ProfileHeader({
           alt={name}
           width={145}
           height={145}
+          priority
           unoptimized
           className={styles.Avatar}
         />
