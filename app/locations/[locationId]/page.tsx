@@ -16,6 +16,7 @@ import { LocationGallery } from "@/components/LocationDetails/LocationGallery/Lo
 import { LocationInfoBlock } from "@/components/LocationDetails/LocationInfoBlock/LocationInfoBlock";
 import { LocationDescription } from "@/components/LocationDetails/LocationDescription/LocationDescription";
 import { ReviewsBlock } from "@/components/LocationDetails/ReviewsBlock/ReviewsBlock";
+import LocationMap from "@/components/Map/LocationMap";
 
 import css from "./page.module.css";
 
@@ -55,6 +56,15 @@ export default function LocationDetailsPage() {
   const location = locationQuery.data;
   const feedbacks = feedbacksQuery.data?.feedbacks ?? [];
 
+  const coords =
+    typeof location.coordinates?.lat === "number" &&
+    typeof location.coordinates?.lon === "number"
+      ? {
+          lat: location.coordinates.lat,
+          lon: location.coordinates.lon,
+        }
+      : undefined;
+
   return (
     <div className="container">
       <section className={css.LocationSection}>
@@ -66,6 +76,10 @@ export default function LocationDetailsPage() {
 
       <section className={css.DescriptionSection}>
         <LocationDescription description={location.description} />
+      </section>
+
+      <section className={css.MapSection}>
+        <LocationMap coordinates={coords} name={location.name} />
       </section>
 
       <section className={css.ReviewsSection}>
