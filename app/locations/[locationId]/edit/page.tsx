@@ -50,6 +50,7 @@ export default function EditLocationPage({ params }: EditLocationPageProps) {
       region: values.region,
       description: values.description,
       image: values.image,
+      coordinates: values.coordinates,
     });
 
     router.push(`/locations/${locationId}`);
@@ -71,6 +72,12 @@ export default function EditLocationPage({ params }: EditLocationPageProps) {
               locationType: locationData.locationType,
               region: locationData.region,
               description: locationData.description || "",
+              coordinates: locationData.coordinates
+                ? {
+                    lat: locationData.coordinates.lat,
+                    lon: locationData.coordinates.lon,
+                  }
+                : null,
             }}
             initialImageUrl={locationData.image}
             onSubmit={handleSubmit}

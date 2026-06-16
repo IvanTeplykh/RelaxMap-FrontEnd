@@ -22,6 +22,7 @@ interface LocationInputWithMapProps {
   className?: string;
   inputWrapperClassName?: string;
   onCoordinatesChange?: (coords: { lat: number; lon: number } | null) => void;
+  initialCoordinates?: { lat: number; lon: number } | null;
 }
 
 export default function LocationInputWithMap({
@@ -30,6 +31,7 @@ export default function LocationInputWithMap({
   className,
   inputWrapperClassName,
   onCoordinatesChange,
+  initialCoordinates,
 }: LocationInputWithMapProps) {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: API_KEY,
@@ -51,6 +53,7 @@ export default function LocationInputWithMap({
       className={className}
       inputWrapperClassName={inputWrapperClassName}
       onCoordinatesChange={onCoordinatesChange}
+      initialCoordinates={initialCoordinates}
     />
   );
 }
@@ -61,11 +64,14 @@ function LocationInputWithMapInner({
   className,
   inputWrapperClassName,
   onCoordinatesChange,
+  initialCoordinates,
 }: LocationInputWithMapProps) {
   const [value, setValue] = useState(removeUkraine(location) || "");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(
-    null,
+    initialCoordinates
+      ? { lat: initialCoordinates.lat, lng: initialCoordinates.lon }
+      : null,
   );
   const [isInitialized, setIsInitialized] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -74,10 +80,10 @@ function LocationInputWithMapInner({
   useEffect(() => {
     const cleaned = removeUkraine(location);
     setValue(cleaned || "");
-    if (!cleaned) {
+    if (!cleaned && !initialCoordinates) {
       setPosition(null);
     }
-  }, [location]);
+  }, [location, initialCoordinates]);
 
   // notify parent of coordinate changes
   useEffect(() => {
@@ -90,9 +96,29 @@ function LocationInputWithMapInner({
     }
   }, [position, onCoordinatesChange]);
 
-  // Geocode initial location if provided
+  // Geocode initial location or reverse-geocode initial coordinates if provided
   useEffect(() => {
-    if (location && !isInitialized) {
+    if (initialCoordinates && !isInitialized) {
+      setIsInitialized(true);
+      const reverseGeocodeInitial = async () => {
+        try {
+          const res = await fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${initialCoordinates.lat},${initialCoordinates.lon}&key=${API_KEY}&language=uk`,
+          );
+          const data = await res.json();
+          if (data.results?.[0]) {
+            const formatted = data.results[0].formatted_address;
+            const cleaned = removeUkraine(formatted);
+            setValue(cleaned);
+            setLocation(cleaned);
+            setPosition({ lat: initialCoordinates.lat, lng: initialCoordinates.lon });
+          }
+        } catch (err) {
+          console.error("Reverse geocoding error:", err);
+        }
+      };
+      reverseGeocodeInitial();
+    } else if (location && !isInitialized) {
       setIsInitialized(true);
       const geocodeInitial = async () => {
         try {
@@ -112,7 +138,7 @@ function LocationInputWithMapInner({
       };
       geocodeInitial();
     }
-  }, [location, isInitialized]);
+  }, [location, initialCoordinates, isInitialized, setLocation]);
 
   // autocomplete (NEW API)
   useEffect(() => {
