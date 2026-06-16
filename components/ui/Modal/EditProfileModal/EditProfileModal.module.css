@@ -1,0 +1,203 @@
+.headerWrapper {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--color-neutral-darkest);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.labelAvatar {
+  width: 100%;
+  margin-bottom: 8px;
+}
+.avatarPreview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-coral-lighter);
+  margin-bottom: 24px;
+}
+
+.avatarPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fileLabel {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.fileButtonText {
+  display: inline-block;
+  padding: 4.5px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-coral-darkest);
+  border-radius: 6px;
+  line-height: 150%;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  border: 1px solid var(--color-overlay-light);
+}
+
+.fileLabel:hover .fileButtonText {
+  background: var(--color-coral-light);
+  color: var(--color-green-dark);
+  border: 1px solid var(--color-coral-light);
+}
+
+.fileInput {
+  display: none;
+}
+
+.nameSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-neutral-darkest);
+  font-weight: 400;
+}
+
+.input {
+  padding: 10px 12px;
+  border: 1px solid var(--color-neutral-lighter);
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  background-color: var(--color-coral-lighter);
+}
+
+.input:focus,
+.input:focus-visible {
+  outline: none;
+  border-color: var(--color-coral-dark);
+}
+
+.input:disabled {
+  background-color: var(--color-neutral-lightest);
+  cursor: not-allowed;
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.cancelButton,
+.submitButton {
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 150%;
+}
+
+.cancelButton {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-coral-darkest);
+  border: 1px solid var(--color-neutral-lighter);
+}
+
+.submitButton {
+  background: var(--color-coral-dark);
+  color: var(--color-white);
+}
+
+.submitButton:hover:not(:disabled),
+.cancelButton:hover:not(:disabled) {
+  background: var(--color-coral-light);
+  color: var(--color-green-dark);
+  border: 1px solid var(--color-coral-light);
+}
+
+.cancelButton:disabled,
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+@media (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .form {
+    gap: 0;
+  }
+  .avatarSection {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .nameSection {
+    margin-bottom: 24px;
+  }
+  .avatarPreview {
+    margin: 0;
+  }
+  .buttonsWrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .cancelButton,
+  .submitButton {
+    min-width: 203px;
+    padding: 11px 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+  }
+  .title {
+    font-size: 48px;
+  }
+  .labelAvatar {
+    font-size: 18px;
+  }
+  .fileButtonText {
+    font-size: 20px;
+    padding: 1.5px 12px;
+  }
+  .label {
+    font-size: 18px;
+  }
+  .input {
+    font-size: 18px;
+  }
+  .cancelButton,
+  .submitButton {
+    min-width: 203px;
+    padding: 8px 12px;
+  }
+}

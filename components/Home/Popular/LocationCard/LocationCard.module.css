@@ -10,7 +10,7 @@
 
 .cardImageWrapper {
   width: 100%;
-  aspect-ratio: 1 / 1; /* одинаковая высота изображения */
+  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
@@ -18,7 +18,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 0; /* убрать старую логику min-height */
+  min-height: 0;
   object-fit: cover;
 }
 
