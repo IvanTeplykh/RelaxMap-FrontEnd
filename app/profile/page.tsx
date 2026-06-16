@@ -69,7 +69,7 @@ export default function ProfilePage() {
       <ProfileHeader
         name={profile.name}
         avatarUrl={profile.avatarUrl}
-        articlesAmount={profile.articlesAmount}
+        articlesAmount={totalLocations}
       />
 
       {totalLocations === 0 ? (

@@ -68,7 +68,7 @@ export default function PublicProfilePage() {
       <ProfileHeader
         name={profile.name}
         avatarUrl={profile.avatarUrl}
-        articlesAmount={profile.articlesAmount}
+        articlesAmount={totalLocations}
       />
 
       <h2 className={styles.SectionTitle}>Локації</h2>
