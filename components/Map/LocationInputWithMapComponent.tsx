@@ -336,7 +336,19 @@ function LocationInputWithMapInner({
           center={center}
           mapContainerClassName={css.mapContainer}
           onClick={handleMapClick}
-          options={{ disableDefaultUI: true }}
+          options={{
+            disableDefaultUI: true,
+            styles: [
+              {
+                featureType: "poi",
+                stylers: [{ visibility: "off" }],
+              },
+              {
+                featureType: "transit",
+                stylers: [{ visibility: "off" }],
+              },
+            ],
+          }}
         >
           {position && <MarkerF position={position} />}
         </GoogleMap>
