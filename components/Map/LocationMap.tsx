@@ -1,6 +1,11 @@
 "use client";
 
-import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  MarkerF,
+  OverlayViewF,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 import css from "./MapComponents.module.css";
 
 type Coordinates = {
@@ -10,6 +15,7 @@ type Coordinates = {
 
 type LocationMapProps = {
   coordinates?: Coordinates;
+  name?: string;
 };
 
 const DEFAULT_CENTER = {
@@ -17,14 +23,11 @@ const DEFAULT_CENTER = {
   lng: 31.0,
 };
 
-const libraries: (
-  | "places"
-  | "drawing"
-  | "geometry"
-  | "visualization"
-)[] = ["places"];
+const libraries: ("places" | "drawing" | "geometry" | "visualization")[] = [
+  "places",
+];
 
-export default function LocationMap({ coordinates }: LocationMapProps) {
+export default function LocationMap({ coordinates, name }: LocationMapProps) {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
     libraries,
@@ -51,16 +54,45 @@ export default function LocationMap({ coordinates }: LocationMapProps) {
       <GoogleMap
         mapContainerClassName={css.mapContainer}
         center={center}
-        zoom={hasCoordinates ? 14 : 5}
+        zoom={hasCoordinates ? 12.5 : 5}
         options={{ disableDefaultUI: true }}
       >
         {hasCoordinates && (
-          <MarkerF
-            position={{
-              lat: coordinates.lat,
-              lng: coordinates.lon,
-            }}
-          />
+          <>
+            <MarkerF
+              position={{
+                lat: coordinates.lat,
+                lng: coordinates.lon,
+              }}
+            />
+            {name && (
+              <OverlayViewF
+                position={{
+                  lat: coordinates.lat,
+                  lng: coordinates.lon,
+                }}
+                mapPaneName="overlayMouseTarget"
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    transform: "translate(16px, -28px)",
+                    color: "var(--color-red, #b00101)",
+                    textShadow:
+                      "0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    lineHeight: "1.2",
+                    pointerEvents: "none",
+                    fontFamily: "Montserrat, sans-serif",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {name}
+                </div>
+              </OverlayViewF>
+            )}
+          </>
         )}
       </GoogleMap>
     </div>

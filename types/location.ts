@@ -27,9 +27,16 @@ export interface LocationDetails {
   description: string;
   region: string;
   locationType: string;
+  coordinates?: {
+    lat: number;
+    lon: number;
+  };
 
   regionInfo?: RegionInfo;
   locationTypeInfo?: LocationTypeInfo;
+
+  latitude?: number;
+  longitude?: number;
 
   rate: number;
   ownerId: LocationOwner;
