@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "../../components/locations/LocationForm/LocationForm.module.css";
 import css from "./AddFeedbackForm.module.css";
-import { AppButton } from "../ui";
+import { AppButton, Loader } from "../ui";
 import { StarRating } from "react-flexible-star-rating";
 export interface ReviewFormValues {
   rating: number;
@@ -82,11 +82,16 @@ const AddFeedbackForm = ({
               type="button"
               variant="secondary"
               onClick={onCancel}
+              disabled={isLoading}
             >
               Відмінити
             </AppButton>
-            <AppButton className={styles.actionButton} type="submit">
-              Надіслати
+            <AppButton
+              className={styles.actionButton}
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? <Loader variant="white" /> : "Надіслати"}
             </AppButton>
           </div>
         </Form>
