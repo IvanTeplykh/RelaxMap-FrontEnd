@@ -7,6 +7,8 @@ import formatUserName from "@/utils/getShortUsernameHeader";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getUserProfile } from "@/lib/usersApi";
+import { useState } from "react";
+import EditProfileModal from "@/components/ui/Modal/EditProfileModal/EditProfileModal";
 
 interface ProfileProps {
   user: User | null;
@@ -16,6 +18,7 @@ interface ProfileProps {
 export default function Profile({ user, onNavigate }: ProfileProps) {
   const router = useRouter();
   const userId = user?.id;
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const profileQuery = useQuery({
     queryKey: ["profile", userId],
@@ -40,16 +43,29 @@ export default function Profile({ user, onNavigate }: ProfileProps) {
 
   return (
     <div className={css.profileWrapper}>
-      <Image
-        className={css.profileImage}
-        src={profile.avatarUrl}
-        alt="Profile image"
-        width={32}
-        height={32}
-        unoptimized
-        loading="eager"
-      />
-      <p className={css.profileName}>{formatUserName(user?.name)}</p>
+      <button
+        onClick={() => setIsEditModalOpen(true)}
+        className={css.editButton}
+      >
+        <Image
+          className={css.profileImage}
+          src={profile.avatarUrl}
+          alt="Profile image"
+          width={32}
+          height={32}
+          unoptimized
+          loading="eager"
+        />
+        <span className={css.profileName}>{formatUserName(user?.name)}</span>
+      </button>
+      {isEditModalOpen && (
+        <EditProfileModal
+          user={user}
+          userId={userId!}
+          currentAvatarUrl={profile.avatarUrl}
+          onClose={() => setIsEditModalOpen(false)}
+        />
+      )}
       <span className={css.profileBorder}></span>
       <button
         className={css.profileLogoutButton}

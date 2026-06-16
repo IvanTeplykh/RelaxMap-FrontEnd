@@ -30,7 +30,7 @@
 }
 
 .primary:hover,
-.primary:focus {
+.primary:focus-visible {
   background-color: var(--color-coral-lighter);
   border-color: var(--color-coral-dark);
   color: var(--color-coral-darkest);
@@ -50,7 +50,7 @@
 }
 
 .secondary:hover,
-.secondary:focus {
+.secondary:focus-visible {
   background-color: var(--color-coral-dark);
   border-color: transparent;
   color: var(--color-white);

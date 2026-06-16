@@ -5,6 +5,15 @@
   /* margin-left: 10px; */
   margin-top: auto;
 }
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .profileImage {
   display: block;
   border-radius: 50%;

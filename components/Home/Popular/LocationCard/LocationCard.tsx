@@ -19,7 +19,7 @@ export default function LocationCard({ location }: LocationCardProps) {
           src={location.image ?? ""}
           alt={location.name ?? "Location Image"}
           className={css.cardImage}
-          sizes="(min-width: 1440px) 421px, (min-width: 768px) 340px, (min-width: 375px) 335px, calc(100vw - 40px)"
+          // sizes="(min-width: 1440px) 421px, (min-width: 768px) 340px, (min-width: 375px) 335px, calc(100vw - 48px)"
         />
       </div>
       <div className={css.cardContent}>

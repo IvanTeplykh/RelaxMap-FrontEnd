@@ -2,7 +2,7 @@
   width: 100%;
 }
 .container {
-  width: 100vw;
+  width: 100%;
   padding: 64px 20px;
   margin: 0 auto;
 }
@@ -50,19 +50,41 @@
   color: var(--color-coral-darkest);
   background: var(--color-coral-lighter);
 }
+@media (hover: hover) {
+  .btnPrev:hover,
+  .btnNext:hover {
+    color: var(--color-coral-darkest);
+    background: var(--color-neutral-lightest);
+    border: 1px solid var(--color-coral-light);
+  }
+}
 
-.btnPrev:focus,
-.btnNext:focus,
 .btnPrev:focus-visible,
 .btnNext:focus-visible {
   color: var(--color-coral-darkest);
-  background: var(--color-coral-lighter);
-  border: 1px solid rgba(178, 178, 178, 0.5);
+  background: var(--color-coral-light);
+  border: 1px solid var(--color-coral-light);
+}
+
+.btnPrev:active,
+.btnNext:active {
+  color: var(--color-coral-darkest);
+  background: var(--color-coral-light);
+  border: 1px solid var(--color-coral-light);
+}
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #f2f2f2;
 }
 
 .btnPrev svg,
 .btnNext svg {
   fill: currentColor;
+  height: 100%;
 }
 
 @media (min-width: 375px) {
