@@ -10,6 +10,9 @@ const privateApi = axios.create({
   withCredentials: true,
 });
 
+const normalizeLocationDescription = (description: string) =>
+  description.replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
+
 export interface CreateLocationPayload {
   name: string;
   locationType: string;
@@ -106,7 +109,7 @@ export const createLocation = async ({
   formData.append("name", name.trim());
   formData.append("locationType", locationType);
   formData.append("region", region);
-  formData.append("description", description.trim());
+  formData.append("description", normalizeLocationDescription(description));
   formData.append("image", image);
 
   try {
@@ -161,7 +164,7 @@ export const updateLocation = async (
   formData.append("name", name.trim());
   formData.append("locationType", locationType);
   formData.append("region", region);
-  formData.append("description", description.trim());
+  formData.append("description", normalizeLocationDescription(description));
 
   if (image) {
     formData.append("image", image);
