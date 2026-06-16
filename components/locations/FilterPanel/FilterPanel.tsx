@@ -210,9 +210,7 @@ export const FilterPanel = ({
               ? "За рейтингом"
               : sort === "newest"
                 ? "Новіші спочатку"
-                : sort === "popularity"
-                  ? "За популярністю"
-                  : "Сортування"}
+                : "За популярністю"}
           </span>
           <svg className={css.dropdownArrow} aria-hidden="true">
             <use href="/sprite.svg#arrow-down" />
