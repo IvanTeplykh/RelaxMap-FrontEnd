@@ -11,6 +11,30 @@
   color: var(--color-green-dark);
 }
 
+.navItem {
+  transition: color 0.3s ease-in-out;
+}
+
+.navItem a {
+  outline: transparent;
+}
+
+@media (hover: hover) {
+  .navItem a:hover {
+    text-decoration: underline;
+    color: var(--color-coral-darkest);
+  }
+}
+
+.navItem a:focus {
+  text-decoration: underline;
+  color: var(--color-coral-darkest);
+}
+
+.navItem a:active {
+  color: var(--color-coral-darkest);
+}
+
 @media (min-width: 1440px) {
   .navList {
     flex-direction: row;

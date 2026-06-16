@@ -134,3 +134,11 @@
   line-height: 1.3;
   margin-top: 6px;
 }
+
+/* Hide Google logo, terms, and copyright info from the maps */
+.mapContainer :global(a[href*="maps.google.com"]),
+.mapContainer :global(.gmnoprint),
+.mapContainer :global(.gm-style-cc) {
+  display: none !important;
+}
+

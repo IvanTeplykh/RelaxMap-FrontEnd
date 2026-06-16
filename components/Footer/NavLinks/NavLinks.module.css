@@ -22,12 +22,20 @@
   justify-content: center;
   padding: 8px 0;
   font-family: "Montserrat", sans-serif;
-  font-style: normal;
-  font-weight: 400;
+
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-coral-darkest);
   white-space: nowrap;
+  transition: color 0.15s ease-in-out;
+  outline: transparent;
+}
+
+.navLink:hover,
+.navLink:focus,
+.navLink:active {
+  color: var(--color-green-dark);
+  text-decoration: underline;
 }
 
 @media (min-width: 768px) {

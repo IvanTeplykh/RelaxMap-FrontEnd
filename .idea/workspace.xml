@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="af0af348-5d89-4c16-bc9c-26fffb9afcab" name="Changes" comment="add footer section">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Footer/NavLinks/NavLinks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer/NavLinks/NavLinks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Logo/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Logo/Logo.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +158,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "footer-fix2",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",
@@ -173,6 +171,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.Next.js: server-side.executor": "Debug",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "C:\\Project\\project-relaxmap-front\\node_modules\\typescript\\lib",
@@ -240,6 +239,18 @@
     <MESSAGE value="add gooter section" />
     <MESSAGE value="add footer section" />
     <option name="LAST_COMMIT_MESSAGE" value="add footer section" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/locationsApi.ts</url>
+          <line>56</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

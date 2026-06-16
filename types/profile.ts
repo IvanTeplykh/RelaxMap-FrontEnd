@@ -14,6 +14,10 @@ export interface Location {
   region: string;
   image: string;
   description?: string;
+  coordinates?: {
+    lat: number;
+    lon: number;
+  };
   /** Average score. May arrive as `rate` or `rating`; missing/0 → 5 empty stars. */
   rate?: number;
   rating?: number;
