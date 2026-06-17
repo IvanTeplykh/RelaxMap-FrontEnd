@@ -1,16 +1,21 @@
 import Image from 'next/image';
+import { AppButton } from '@/components/ui';
 import styles from './ProfileHeader.module.css';
 
 interface ProfileHeaderProps {
   name: string;
   avatarUrl: string;
   articlesAmount: number;
+  isOwnProfile?: boolean;
+  onEditClick?: () => void;
 }
 
 export function ProfileHeader({
   name,
   avatarUrl,
   articlesAmount,
+  isOwnProfile = false,
+  onEditClick,
 }: ProfileHeaderProps) {
   return (
     <div className={styles.Header}>
@@ -35,6 +40,15 @@ export function ProfileHeader({
         <p className={styles.Name}>{name}</p>
         <p className={styles.Articles}>Статей: {articlesAmount}</p>
       </div>
+      {isOwnProfile && (
+        <AppButton
+          variant="secondary"
+          onClick={onEditClick}
+          className={styles.EditButton}
+        >
+          Редагувати профіль
+        </AppButton>
+      )}
     </div>
   );
 }
