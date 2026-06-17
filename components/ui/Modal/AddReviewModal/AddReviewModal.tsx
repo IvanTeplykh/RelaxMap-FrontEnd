@@ -33,6 +33,9 @@ const AddReviewModal = () => {
       queryClient.invalidateQueries({ queryKey: ["feedbacks", locationId] });
 
       router.back();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1);
     } catch (error) {
       console.error("Action failed:", error);
       toast.error(
