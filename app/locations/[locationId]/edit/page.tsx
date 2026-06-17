@@ -56,10 +56,6 @@ export default function EditLocationPage({ params }: EditLocationPageProps) {
     router.push(`/locations/${locationId}`);
   };
 
-  if (isLoading) {
-    return <div>Завантаження...</div>;
-  }
-
   return (
     <div className={styles.page}>
       <section className={styles.section}>

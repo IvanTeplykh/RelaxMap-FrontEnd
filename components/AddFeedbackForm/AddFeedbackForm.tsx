@@ -23,7 +23,7 @@ const ReviewSchema = Yup.object().shape({
     .max(5)
     .required("Оцінка є обов'язковою"),
   review: Yup.string()
-    .min(10, "Відгук занадто короткий")
+    .min(1, "Відгук занадто короткий")
     .required("Напишіть ваш відгук"),
 });
 
