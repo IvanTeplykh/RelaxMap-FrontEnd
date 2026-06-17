@@ -241,7 +241,8 @@ export function LocationForm({
     if (!isCategoriesLoading && !categoriesError) {
       void validateForm();
     }
-  }, [categoriesError, isCategoriesLoading, validateForm]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoriesError, isCategoriesLoading]);
 
   useEffect(() => {
     return () => {
@@ -468,9 +469,11 @@ export function LocationForm({
               const newLat = coords?.lat ?? null;
               const newLon = coords?.lon ?? null;
               const currentCoordinates = formik.values.coordinates;
+              const currentLat = currentCoordinates?.lat ?? null;
+              const currentLon = currentCoordinates?.lon ?? null;
               if (
-                currentCoordinates?.lat !== newLat ||
-                currentCoordinates?.lon !== newLon
+                currentLat !== newLat ||
+                currentLon !== newLon
               ) {
                 formik.setFieldValue(
                   "coordinates",
