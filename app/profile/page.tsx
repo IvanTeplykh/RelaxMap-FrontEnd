@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from 'react';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useAuthStore } from '@/store';
 import { getUserLocations, getUserProfile } from '@/lib/usersApi';
 import type { LocationsResponse } from '@/types/profile';
 import { ProfileHeader } from '@/components/profile/ProfileHeader/ProfileHeader';
 import { EmptyLocations } from '@/components/profile/EmptyLocations/EmptyLocations';
+import EditProfileModal from '@/components/ui/Modal/EditProfileModal/EditProfileModal';
 import { LocationCard } from '@/components/locations';
 import { AppButton, Loader } from '@/components/ui';
 import styles from './page.module.css';
@@ -15,6 +17,7 @@ const PER_PAGE = 6;
 export default function ProfilePage() {
   const user = useAuthStore((state) => state.user);
   const userId = user?.id;
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   const profileQuery = useQuery({
     queryKey: ["profile", userId],
@@ -70,7 +73,18 @@ export default function ProfilePage() {
         name={profile.name}
         avatarUrl={profile.avatarUrl}
         articlesAmount={totalLocations}
+        isOwnProfile={true}
+        onEditClick={() => setIsEditOpen(true)}
       />
+
+      {isEditOpen && (
+        <EditProfileModal
+          user={user}
+          userId={userId!}
+          currentAvatarUrl={profile.avatarUrl}
+          onClose={() => setIsEditOpen(false)}
+        />
+      )}
 
       {totalLocations === 0 ? (
         <EmptyLocations

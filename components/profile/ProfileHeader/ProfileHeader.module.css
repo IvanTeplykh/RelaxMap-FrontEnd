@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 32px;
+  padding: 32px 0;
   text-align: center;
 }
 
@@ -49,6 +49,10 @@
   color: var(--color-neutral);
 }
 
+.EditButton {
+  padding: 4px 10px;
+}
+
 @media (min-width: 768px) {
   .Header {
     flex-direction: row;
@@ -59,10 +63,18 @@
   .Info {
     align-items: flex-start;
   }
+
+  .EditButton {
+    margin-left: auto;
+  }
 }
 
 @media (min-width: 1280px) {
   .Name {
     font-size: 32px;
+  }
+
+  .EditButton {
+    margin-left: 100px;
   }
 }
