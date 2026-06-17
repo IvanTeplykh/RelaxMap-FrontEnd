@@ -84,6 +84,7 @@ const EditProfileModal = ({
 
       toast.success("Профіль оновлено");
       onClose();
+      window.location.reload();
     } catch (error) {
       console.error("Failed to update profile:", error);
       toast.error("Помилка при оновленні профілю");

@@ -8,7 +8,7 @@ import { FilterPanel } from "../FilterPanel/FilterPanel";
 import { LocationsGrid } from "../LocationsGrid/LocationsGrid";
 import css from "./LocationsPage.module.css";
 import { useMediaQuery } from "react-responsive";
-import { Loader } from "@/components/ui";
+import { Loader, AppButton } from "@/components/ui";
 
 export const LocationsPage = () => {
   const router = useRouter();
@@ -144,7 +144,40 @@ export const LocationsPage = () => {
         )}
 
         {!isLoading && !isError && locations.length === 0 && (
-          <p className={css.statusMessage}>Нічого не знайдено</p>
+          <div className={css.emptyState}>
+            <div className={css.emptyStateIcon}>
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+                <path d="M8 11h6" />
+              </svg>
+            </div>
+            <h3 className={css.emptyStateTitle}>Нічого не знайдено</h3>
+            <p className={css.emptyStateDescription}>
+              Ми не знайшли локацій за вашим запитом. Спробуйте змінити фільтри пошуку або скиньте їх, щоб побачити всі місця.
+            </p>
+            <AppButton
+              variant="primary"
+              className={css.emptyStateButton}
+              onClick={() => {
+                setSearch("");
+                setRegion("");
+                setLocationTypesFilter([]);
+                setSort("");
+              }}
+            >
+              Скинути фільтри
+            </AppButton>
+          </div>
         )}
         {!isLoading && !isError && locations.length > 0 && (
           <LocationsGrid
